@@ -3,7 +3,7 @@ import RecipesContext from '../context/RecipesContext';
 import CardReceitas from './CardReceitas';
 
 function TelaPrincipal() {
-  const { foodApi, categoryApi } = useContext(RecipesContext);
+  const { foodApi, categoryApi, handlebutton } = useContext(RecipesContext);
   return (
     <body>
       <div>
@@ -14,6 +14,8 @@ function TelaPrincipal() {
               data-testid={ `${item.strCategory}-category-filter` }
               type="button"
               key={ index }
+              name={ item.strCategory }
+              onClick={ handlebutton }
             >
               {item.strCategory}
             </button>

@@ -8,9 +8,6 @@ function App() {
     <Switch>
       <Route exact path="/" component={ Login } />
       <Route path="/foods" component={ TelaPrincipal } />
-      {/* <Route path="/drinks" component={ Drinks } />
-      <Route path="/explore" component={ Explore } />
-      <Route path="/profile" component={ Profile } /> */}
     </Switch>
   );
 }

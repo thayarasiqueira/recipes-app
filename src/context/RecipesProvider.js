@@ -33,9 +33,14 @@ function RecipesProvider({ children }) {
     };
     apiCategory();
   }, []);
+
+  function handlebutton({ target: { name } }) {
+    console.log(name);
+  }
   const contextType = {
     foodApi,
     categoryApi,
+    handlebutton,
   };
 
   return (
