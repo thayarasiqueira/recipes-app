@@ -35,7 +35,7 @@ function RecipesProvider({ children }) {
   }, []);
 
   function handlebutton({ target: { name } }) {
-    console.log(name);
+    console.log(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${name}`);
   }
   const contextType = {
     foodApi,
