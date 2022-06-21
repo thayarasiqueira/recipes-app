@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Explore from './pages/Explore';
 import ExploreDrinks from './pages/ExploreDrinks';
 import ExploreFoods from './pages/ExploreFoods';
+import Profile from './pages/Profile';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <Route exact path="/explore" component={ Explore } />
       <Route path="/explore/foods" component={ ExploreFoods } />
       <Route path="/explore/drinks" component={ ExploreDrinks } />
+      <Route path="/profile" component={ Profile } />
     </Switch>
   );
 }
