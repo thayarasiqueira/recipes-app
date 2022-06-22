@@ -11,6 +11,8 @@ import DetailsDrink from './Telas/DetailsDrink';
 import DetailsFood from './Telas/DetailsFood';
 import Profile from './Telas/Profile';
 import InProgress from './Telas/InProgress';
+import DoneRecipes from './Telas/DoneRecipes';
+import FavoriteRecipes from './Telas/FavoriteRecipes';
 
 function App() {
   return (
@@ -28,6 +30,8 @@ function App() {
       <Route path="/explore/drinks" component={ ExploreDrinks } />
       <Route path="/foods/:id/in-progress" component={ InProgress } />
       <Route path="/profile" component={ Profile } />
+      <Route path="/done-recipes" component={ DoneRecipes } />
+      <Route path="/favorite-recipes" component={ FavoriteRecipes } />
     </Switch>
   );
 }
