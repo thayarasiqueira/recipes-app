@@ -1,11 +1,13 @@
 import React, { useContext } from 'react';
+import Header from '../components/Header';
 import RecipesContext from '../context/RecipesContext';
-import CardReceitas from './CardReceitas';
+import CardReceitas from '../components/CardReceitas';
 
 function TelaPrincipal() {
   const { foodApi, categoryApi, handlebutton } = useContext(RecipesContext);
   return (
     <body>
+      <Header />
       <div>
         {
           categoryApi.map((item, index) => (
