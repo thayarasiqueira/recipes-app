@@ -3,17 +3,18 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
-import RecipesProvider from './context/RecipesProvider';
-import LoginProvider from './context/LoginProvider';
 import * as serviceWorker from './serviceWorker';
+import ProviderFood from './context/ProviderFood';
+import ProviderDrinks from './context/ProviderDrinks';
 
 ReactDOM.render(
+
   <BrowserRouter>
-    <RecipesProvider>
-      <LoginProvider>
+    <ProviderFood>
+      <ProviderDrinks>
         <App />
-      </LoginProvider>
-    </RecipesProvider>
+      </ProviderDrinks>
+    </ProviderFood>
   </BrowserRouter>,
   document.getElementById('root'),
 );
