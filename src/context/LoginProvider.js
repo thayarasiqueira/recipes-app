@@ -28,6 +28,7 @@ export default function LoginProvider({ children }) {
   };
 
   const contextLogin = {
+    setEmail,
     password,
     userEmail,
     disabled,

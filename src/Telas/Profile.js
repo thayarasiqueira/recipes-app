@@ -1,14 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import LoginContext from '../context/LoginContext';
 
 export default function Profile() {
   const initialPosition = 10;
   const finalPosition = 26;
   const emailFromLocal = localStorage.getItem('user');
   const userEmailSub = emailFromLocal.substring(initialPosition, finalPosition);
+  const { setEmail } = useContext(LoginContext);
 
   const handleClickLogout = () => {
     localStorage.clear();
+    setEmail('');
   };
 
   return (
