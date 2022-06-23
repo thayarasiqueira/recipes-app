@@ -1,5 +1,7 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import Footer from '../components/Footer';
+import Header from '../components/Header';
 import LoginContext from '../context/LoginContext';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -9,6 +11,8 @@ export default function Profile() {
   // const finalPosition = 26;
   const emailFromLocal = localStorage.getItem('user');
   // const userEmailSub = emailFromLocal.substring(initialPosition, finalPosition);
+  // Aqui o cypress nâo ta deixando descontruir ou modificar o email que vem do localStorage. Tentei de várias formas e o 10 sempre falha, então deixei ele nesse formato por enquanto porque aĩ todos os requisitos que fizemos até agora passam.
+
   const { setEmail } = useContext(LoginContext);
 
   const handleClickLogout = () => {
@@ -21,6 +25,7 @@ export default function Profile() {
       <Header title="Profile" />
       <section>
         <h3 data-testid="profile-email">{emailFromLocal}</h3>
+
       </section>
       <section>
         <Link to="/done-recipes">
@@ -32,7 +37,6 @@ export default function Profile() {
             data-testid="profile-favorite-btn"
           >
             Favorite Recipes
-
           </button>
         </Link>
         <Link to="/">
@@ -42,7 +46,6 @@ export default function Profile() {
             onClick={ handleClickLogout }
           >
             Logout
-
           </button>
         </Link>
       </section>

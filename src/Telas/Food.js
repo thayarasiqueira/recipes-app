@@ -10,11 +10,14 @@ function Food() {
     categoryApiFood,
     handlebuttonFood,
     arrayPatternFood,
-    allFunction } = useContext(ContextFood);
+    allFunction,
+    // pathFood,
+  } = useContext(ContextFood);
 
   const actualLocation = useLocation();
   return (
     <body>
+      <Header />
       <div>
         <Header title="Foods" enableBtn />
         {

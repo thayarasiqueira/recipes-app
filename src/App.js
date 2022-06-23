@@ -10,7 +10,7 @@ import ExploreFoods from './Telas/ExploreFoods';
 // import DetailsDrink from './Telas/DetailsDrink';
 // import DetailsFood from './Telas/DetailsFood';
 import Profile from './Telas/Profile';
-// import InProgress from './Telas/InProgress';
+import InProgress from './Telas/InProgress';
 import DoneRecipes from './Telas/DoneRecipes';
 import FavoriteRecipes from './Telas/FavoriteRecipes';
 import ExploreFoodsIngredients from './Telas/ExploreFoodsIngredients';
@@ -19,7 +19,6 @@ import ExploreFoodsNationalities from './Telas/ExploreFoodsNationalities';
 
 function App() {
   return (
-
     <Switch>
       <Route exact path="/" component={ Login } />
       <Route exact path="/foods" component={ Food } />

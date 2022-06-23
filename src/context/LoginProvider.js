@@ -23,7 +23,7 @@ export default function LoginProvider({ children }) {
     } else { setDisabled(true); }
   }, [userEmail, password]);
   const saveEmailStorage = () => {
-    localStorage.setItem('user', JSON.stringify(userEmail));
+    localStorage.setItem('user', JSON.stringify(userEmail.email));
     localStorage.setItem('mealsToken', 1);
     localStorage.setItem('cocktailsToken', 1);
   };
