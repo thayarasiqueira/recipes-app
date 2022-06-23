@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
+import HeaderSearch from './HeaderSearch';
 
 function Header({ title, enableBtn = false }) {
   const [enableInput, setEnableInput] = useState(false);
@@ -32,7 +33,12 @@ function Header({ title, enableBtn = false }) {
         onClick={ handleClick }
       />}
       { enableInput
-   && <input type="text" data-testid="search-input" />}
+    && (
+      <>
+        <input type="text" data-testid="search-input" />
+        <HeaderSearch />
+      </>
+    )}
     </section>
 
   );
