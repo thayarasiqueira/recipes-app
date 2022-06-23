@@ -15,7 +15,6 @@ function Drinks() {
   const actualLocationDrinks = useLocation();
   return (
     <body>
-      <Header />
       <div>
         <Header title="Drinks" enableBtn />
         {

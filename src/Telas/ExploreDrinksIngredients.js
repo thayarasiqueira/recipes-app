@@ -4,10 +4,10 @@ import Footer from '../components/Footer';
 
 function ExploreDrinksIngredients() {
   return (
-    <div>
+    <section>
       <Header title="Explore Ingredients" />
       <Footer />
-    </div>
+    </section>
   );
 }
 
