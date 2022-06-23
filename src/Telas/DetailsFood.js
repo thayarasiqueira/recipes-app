@@ -1,12 +1,19 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 
 function DetailsFood() {
+  const params = useParams();
+  console.log(params);
   return (
-    <body>
+    <div>
       Detalhes Food
-    </body>
+    </div>
 
   );
 }
+
+DetailsFood.propTypes = {
+
+};
 
 export default DetailsFood;

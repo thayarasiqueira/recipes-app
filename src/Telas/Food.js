@@ -10,7 +10,7 @@ function Food() {
     allFunction } = useContext(ContextFood);
 
   return (
-    <body>
+    <div>
       <div>
         {
           categoryApiFood.map((item, index) => (
@@ -56,7 +56,7 @@ function Food() {
 
         }
       </div>
-    </body>
+    </div>
 
   );
 }

@@ -17,13 +17,16 @@ function App() {
 
     <Switch>
       <Route exact path="/" component={ Login } />
-      <Route path="/foods" component={ Food } />
+      <Route
+        path="/foods/:id-da-receita"
+        component={ DetailsFood }
+      />
+      <Route exact path="/foods" component={ Food } />
       <Route path="/drinks" component={ Drinks } />
       {/*  <Route path="/profile" component={ Profile } /> */}
       {/* <Route path="/drinks" component={ Drinks } /> */}
       <Route exact path="/explore" component={ Explore } />
       <Route path="/drinks/:{id-da-receita}" component={ DetailsDrink } />
-      <Route path="/foods/:{id-da-receita}" component={ DetailsFood } />
       <Route path="/explore/foods" component={ ExploreFoods } />
       <Route path="/explore/drinks" component={ ExploreDrinks } />
       <Route path="/foods/:id/in-progress" component={ InProgress } />

@@ -1,10 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
+import DetailsFood from './DetailsFood';
 
 function CardReceitas({ nameReceita, imageReceita, indexReceita, idReceita }) {
+  // const history = useHistory();
+
   return (
     <div
+      // onClick={ () => { history.push(`/foods/${idReceita}`) } }
       data-testid={ `${indexReceita}-recipe-card` }
     >
       <Link
