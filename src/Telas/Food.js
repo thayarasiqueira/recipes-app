@@ -1,15 +1,20 @@
 import React, { useContext } from 'react';
+import { useLocation } from 'react-router-dom';
 import ContextFood from '../context/ContextFood';
 import CardFood from './CardFood';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 function Food() {
   const {
     categoryApiFood,
     handlebuttonFood,
     arrayPatternFood,
-    allFunction } = useContext(ContextFood);
+    allFunction,
+    // pathFood,
+  } = useContext(ContextFood);
 
+  const actualLocation = useLocation();
   return (
     <body>
       <Header />
@@ -58,6 +63,7 @@ function Food() {
 
         }
       </div>
+      { actualLocation.pathname === '/foods' ? <Footer /> : <p>erro</p>}
     </body>
 
   );
