@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import Header from '../components/Header';
 import ContextDrinks from '../context/ContextDrinks';
 import CardDrink from './CardDrink';
 
@@ -10,6 +11,7 @@ function Drinks() {
     allFunction } = useContext(ContextDrinks);
   return (
     <body>
+      <Header />
       <div>
         {
           categoryApiDrink.map((item, index) => (

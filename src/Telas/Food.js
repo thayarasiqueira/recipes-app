@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import ContextFood from '../context/ContextFood';
 import CardFood from './CardFood';
+import Header from '../components/Header';
 
 function Food() {
   const {
@@ -11,6 +12,7 @@ function Food() {
 
   return (
     <body>
+      <Header />
       <div>
         {
           categoryApiFood.map((item, index) => (
