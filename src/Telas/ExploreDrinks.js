@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Footer from '../components/Footer';
 import Header from '../components/Header';
 import { surpriseMeDrinks } from '../components/SurpriseMeRequest';
 
@@ -21,6 +22,7 @@ export default function ExploreDrinks({ history }) {
       >
         Surprise me!
       </button>
+      <Footer />
     </div>
   );
 }
