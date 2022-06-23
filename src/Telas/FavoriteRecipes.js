@@ -1,12 +1,11 @@
 import React from 'react';
+import Header from '../components/Header';
 
 export default function FavoriteRecipes() {
   return (
     <main>
       <section>
-        <h3>
-          Favorite Recipes
-        </h3>
+        <Header title="Favorite Recipes" />
       </section>
     </main>
   );

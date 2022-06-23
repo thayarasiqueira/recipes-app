@@ -1,9 +1,14 @@
 import React from 'react';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 
-export default function ExploreFoodsIngredients() {
+function ExploreFoodsIngredients() {
   return (
     <div>
-      ExploreFoodsIngredients
+      <Header title="Explore Ingredients" />
+      <Footer />
     </div>
   );
 }
+
+export default ExploreFoodsIngredients;

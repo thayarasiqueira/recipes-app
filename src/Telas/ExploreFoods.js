@@ -7,7 +7,7 @@ import { surpriseMeFood } from '../components/SurpriseMeRequest';
 export default function ExploreFoods({ history }) {
   return (
     <div>
-      <Header />
+      <Header title="Explore Foods" />
       <button
         type="button"
         data-testid="explore-by-ingredient"
@@ -28,7 +28,7 @@ export default function ExploreFoods({ history }) {
         onClick={ async () => surpriseMeFood() }
       >
         Surprise me!
-      </button> 
+      </button>
       <Footer />
     </div>
   );
