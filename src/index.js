@@ -6,15 +6,18 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import ProviderFood from './context/ProviderFood';
 import ProviderDrinks from './context/ProviderDrinks';
+import LoginProvider from './context/LoginProvider';
 
 ReactDOM.render(
 
   <BrowserRouter>
-    <ProviderFood>
-      <ProviderDrinks>
-        <App />
-      </ProviderDrinks>
-    </ProviderFood>
+    <LoginProvider>
+      <ProviderFood>
+        <ProviderDrinks>
+          <App />
+        </ProviderDrinks>
+      </ProviderFood>
+    </LoginProvider>
   </BrowserRouter>,
   document.getElementById('root'),
 );
