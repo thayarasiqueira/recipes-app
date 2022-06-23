@@ -1,12 +1,11 @@
 import React from 'react';
+import Header from '../components/Header';
 
 export default function DoneRecipes() {
   return (
     <main>
       <section>
-        <h3>
-          Done Recipes
-        </h3>
+        <Header title="Done Recipes" />
       </section>
     </main>
   );

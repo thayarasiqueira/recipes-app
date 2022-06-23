@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 export default function Explore({ history }) {
   return (
     <main>
-      <Header />
+      <Header title="Explore" />
       <button
         data-testid="explore-foods"
         type="button"
@@ -20,6 +21,7 @@ export default function Explore({ history }) {
       >
         Explore Drinks
       </button>
+      <Footer />
     </main>
   );
 }
