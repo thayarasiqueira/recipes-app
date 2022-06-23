@@ -1,12 +1,15 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
 import HeaderSearch from './HeaderSearch';
+import ContextFood from '../context/ContextFood';
 
 function Header({ title, enableBtn = false }) {
+  const { handleSearch, filteredResults } = useContext(ContextFood);
   const [enableInput, setEnableInput] = useState(false);
+
   const handleClick = () => {
     if (!enableInput) {
       setEnableInput(true);
@@ -35,10 +38,13 @@ function Header({ title, enableBtn = false }) {
       { enableInput
     && (
       <>
-        <input type="text" data-testid="search-input" />
+        <input type="text" data-testid="search-input" onChange={ handleSearch } />
         <HeaderSearch />
       </>
     )}
+      {filteredResults.length > 0 && filteredResults.map((e, index) => (
+        <p key={ index }>{e.strMeal}</p>
+      ))}
     </section>
 
   );

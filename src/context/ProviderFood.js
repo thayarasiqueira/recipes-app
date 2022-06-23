@@ -11,6 +11,9 @@ function ProviderFood({ children }) {
   const [arrayPatternFood, setArrayPatternFood] = useState([]);
   const [nameLink, setNameLink] = useState('');
   const [pathFood, setPathFood] = useState('/foods');
+  const [filterSearch, setFilterSearch] = useState('');
+  const [filteredResults, setFilteredResults] = useState([]);
+  const [search, setSearch] = useState('');
 
   /* const ActualLocation = () => {
     const actualPath = useLocation();
@@ -58,6 +61,57 @@ function ProviderFood({ children }) {
     setNameLink(name);
   }
 
+  function handleChange({ target }) {
+    setFilterSearch(target.value);
+  }
+
+  function handleSearch({ target }) {
+    setSearch(target.value);
+  }
+
+  async function searchByFirstLetter(firstletter) {
+    try {
+      const response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?f=${firstletter}`);
+      const data = await response.json();
+      setFilteredResults(data.meals);
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  async function searchByName(name) {
+    try {
+      const response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${name}`);
+      const data = await response.json();
+      setFilteredResults(data.meals);
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  async function searchByIngredient(ingredient) {
+    try {
+      const response = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}`);
+      const data = await response.json();
+      setFilteredResults(data.meals);
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  function handleFilterSearch() {
+    if (filterSearch === 'First Letter' && search.length === 1) {
+      searchByFirstLetter(search);
+    } else if (filterSearch === 'First Letter' && search.length !== 1) {
+      global.alert('Your search must have only 1 (one) character');
+    } else if (filterSearch === 'Ingredient') {
+      searchByIngredient(search);
+    } else if (filterSearch === 'Name') {
+      searchByName(search);
+    } else {
+      console.log('erro');
+    }
+  }
   async function allFunction() {
     apiFood();
   }
@@ -65,9 +119,14 @@ function ProviderFood({ children }) {
     categoryApiFood,
     arrayPatternFood,
     pathFood,
+    filterSearch,
+    filteredResults,
     setPathFood,
     handlebuttonFood,
     allFunction,
+    handleChange,
+    handleFilterSearch,
+    handleSearch,
   };
 
   return (
