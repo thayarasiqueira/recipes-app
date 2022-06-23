@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+// import { useLocation } from 'react-router-dom';
 import ContextFood from './ContextFood';
 
 function ProviderFood({ children }) {
@@ -9,7 +10,13 @@ function ProviderFood({ children }) {
   const [categoryApiFood, setCategoryApiFood] = useState([]);
   const [arrayPatternFood, setArrayPatternFood] = useState([]);
   const [nameLink, setNameLink] = useState('');
+  const [pathFood, setPathFood] = useState('/foods');
 
+  /* const ActualLocation = () => {
+    const actualPath = useLocation();
+    setPathFood(actualPath);
+  };
+ */
   async function apiFood() {
     try {
       const response = await fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=');
@@ -57,6 +64,8 @@ function ProviderFood({ children }) {
   const contextType = {
     categoryApiFood,
     arrayPatternFood,
+    pathFood,
+    setPathFood,
     handlebuttonFood,
     allFunction,
   };

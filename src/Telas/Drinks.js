@@ -1,4 +1,6 @@
 import React, { useContext } from 'react';
+import { useLocation } from 'react-router-dom';
+import Footer from '../components/Footer';
 import Header from '../components/Header';
 import ContextDrinks from '../context/ContextDrinks';
 import CardDrink from './CardDrink';
@@ -9,6 +11,8 @@ function Drinks() {
     arrayPatternDrink,
     handleButtonDrink,
     allFunction } = useContext(ContextDrinks);
+
+  const actualLocationDrinks = useLocation();
   return (
     <body>
       <Header />
@@ -56,6 +60,7 @@ function Drinks() {
         }
 
       </div>
+      {actualLocationDrinks.pathname === '/drinks' ? <Footer /> : <p>erro</p>}
     </body>
 
   );
