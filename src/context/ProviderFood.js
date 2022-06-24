@@ -21,6 +21,7 @@ function ProviderFood({ children }) {
     try {
       const response = await fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=');
       const data = await response.json();
+      console.log(data);
       setArrayPatternFood(data.meals.slice(0, TWELVE));
     } catch (e) {
       console.log(e);

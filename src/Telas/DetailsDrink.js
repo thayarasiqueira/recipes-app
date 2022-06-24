@@ -5,7 +5,6 @@ function DetailsDrink() {
     <body>
       Detalhes Drinks
     </body>
-
   );
 }
 
