@@ -5,26 +5,28 @@ import { useHistory } from 'react-router-dom';
 function CardReceitas({ nameReceita, imageReceita, indexReceita, idReceita }) {
   const history = useHistory();
   return (
-    <button
-      type="button"
-      onClick={ () => {
-        history.push(`/foods/${idReceita}`);
-      } }
-      data-testid={ `${indexReceita}-recipe-card` }
-    >
-
-      <img
-        data-testid={ `${indexReceita}-card-img` }
-        src={ imageReceita }
-        alt="Imagem"
-      />
-      <div
-        data-testid={ `${indexReceita}-card-name` }
+    <div data-testid={ `${indexReceita}-recipe-card` }>
+      <button
+        type="button"
+        onClick={ () => {
+          history.push(`/foods/${idReceita}`);
+        } }
 
       >
-        {nameReceita}
-      </div>
-    </button>
+
+        <img
+          data-testid={ `${indexReceita}-card-img` }
+          src={ imageReceita }
+          alt="Imagem"
+        />
+        <div
+          data-testid={ `${indexReceita}-card-name` }
+
+        >
+          {nameReceita}
+        </div>
+      </button>
+    </div>
   );
 }
 

@@ -10,7 +10,7 @@ import ExploreFoods from './Telas/ExploreFoods';
 import Profile from './Telas/Profile';
 import DetailsDrink from './Telas/DetailsDrink';
 // ---------------------------------------------------------
-import InProgress from './Telas/InProgress';
+/* import InProgress from './Telas/InProgress'; */
 import ProviderDetailsFood from './context/ProviderDetailsFood';
 import ProviderDetailsDrinks from './context/DetailsDrinks/ProviderDetailsDrinks';
 import DoneRecipes from './Telas/DoneRecipes';
@@ -27,16 +27,17 @@ function App() {
         <Switch>
           <Route exact path="/" component={ Login } />
           <Route
+            exact
             path="/foods/:id"
             component={ DetailsFood }
           />
           <Route exact path="/foods" component={ Food } />
-          <Route path="/drinks/:id" component={ DetailsDrink } />
+          <Route exact path="/drinks/:id" component={ DetailsDrink } />
           <Route exact path="/drinks" component={ Drinks } />
           <Route exact path="/explore" component={ Explore } />
-          <Route path="/explore/foods" component={ ExploreFoods } />
-          <Route path="/explore/drinks" component={ ExploreDrinks } />
-          <Route path="/foods/:id/in-progress" component={ InProgress } />
+          <Route exact path="/explore/foods" component={ ExploreFoods } />
+          <Route exact path="/explore/drinks" component={ ExploreDrinks } />
+          {/* <Route exact path="/foods/:id/in-progress" component={ InProgress } /> */}
           <Route
             exact
             path="/explore/foods/ingredients"

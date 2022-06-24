@@ -1,0 +1,19 @@
+.recomended{
+    
+}
+
+.card-recomended {
+  display: flex;
+  flex-direction: column;
+
+}
+
+.card-titulo {
+  padding-bottom: 0px;
+  margin-bottom: -10px;
+
+}
+
+.card-name {
+    font-size: 25px;
+}

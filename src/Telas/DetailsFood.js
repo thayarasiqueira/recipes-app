@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
-// import PropTypes from 'prop-types';
 import ContextDetailsFood from '../context/ContextDetailsFood';
+import '../DetailsCss/details.css';
 
 function DetailsFood() {
   const { arrayId, functionPullId,
@@ -78,26 +78,39 @@ function DetailsFood() {
               <h6>
                 Recommended
               </h6>
-              {
-                arrayPatternDrink.map((drink, amount) => (
-                  <div
-                    data-testid={ `${amount}-recomendation-card` }
-                    key={ amount }
-                  >
-                    <img
-                      src={ drink.strDrinkThumb }
-                      alt="ilustração"
-                    />
-                    <p
-                      data-testid={ `${amount}-recomendation-title` }
+              <div
+                className="recomended"
+              >
+                {
+                  arrayPatternDrink.map((drink, amount) => (
+                    <div
+                      className="card-recomended"
+                      data-testid={ `${amount}-recomendation-card` }
+                      key={ amount }
                     >
-                      {drink.strAlcoholic}
+                      <img
+                        src={ drink.strDrinkThumb }
+                        alt="ilustração"
+                        height="150"
+                        width="150"
+                      />
+                      <p
+                        className="card-titulo"
+                        data-testid={ `${amount}-recomendation-title` }
+                      >
+                        {drink.strAlcoholic}
 
-                    </p>
-                    <h1>{drink.strDrink}</h1>
-                  </div>
-                ))
-              }
+                      </p>
+                      <h1
+                        className="card-name"
+                      >
+                        {drink.strDrink}
+
+                      </h1>
+                    </div>
+                  ))
+                }
+              </div>
             </div>
           </div>
         ))
@@ -112,9 +125,5 @@ function DetailsFood() {
 
   );
 }
-
-DetailsFood.propTypes = {
-
-};
 
 export default DetailsFood;

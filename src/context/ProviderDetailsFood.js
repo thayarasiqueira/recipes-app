@@ -6,6 +6,8 @@ import ContextDetailsFood from './ContextDetailsFood';
 function ProviderDetailsFood({ children }) {
   // MagicNumber
   const TWENTY = 20;
+  const SIX = 6;
+  // ---------------------------------------------------------
   const history = useHistory();
   const [arrayId, setArrayId] = useState([]);
   const [arrayIngredients, setArrayIngredients] = useState([]);
@@ -33,7 +35,7 @@ function ProviderDetailsFood({ children }) {
     try {
       const response = await fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=');
       const data = await response.json();
-      setArrayPatternDrink(data.drinks);
+      setArrayPatternDrink(data.drinks.slice(0, SIX));
     } catch (e) {
       console.log(e);
     }
