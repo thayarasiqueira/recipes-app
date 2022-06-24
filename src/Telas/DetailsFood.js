@@ -1,13 +1,49 @@
 import React, { useContext, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import ContextDetailsFood from '../context/ContextDetailsFood';
 import '../DetailsCss/details.css';
 
 function DetailsFood() {
   const { arrayId, functionPullId,
-    arrayIngredients, arrayPatternDrink } = useContext(ContextDetailsFood);
+    arrayIngredients, arrayPatternDrink,
+    performedRecipes, doneRecipes,
+    inProgressRecipes, continueRecipes } = useContext(ContextDetailsFood);
   useEffect(() => {
     functionPullId();
+    doneRecipes();
+    inProgressRecipes();
   }, []);
+  const history = useHistory();
+
+  const buttonContinue = (
+    <button
+      data-testid="start-recipe-btn"
+      type="button"
+      className="button-details"
+      disabled={ performedRecipes }
+      onClick={ () => { history.push('/foods/'); } }
+    >
+
+      Continue Recipe
+
+    </button>
+  );
+
+  const buttonStart = (
+    <button
+      data-testid="start-recipe-btn"
+      type="button"
+      className="button-details"
+      disabled={ performedRecipes }
+      onClick={ () => {
+        history.push(`/foods/${history.location.pathname.split('/')[2]}/in-progress`);
+      } }
+    >
+
+      Start Recipe
+
+    </button>
+  );
 
   return (
     <div>
@@ -92,15 +128,16 @@ function DetailsFood() {
                         src={ drink.strDrinkThumb }
                         alt="ilustração"
                         height="200"
-                        width="170"
+                        width="180"
                       />
                       <p
-                        data-testid={ `${amount}-recomendation-title` }
+                        className="card-category"
                       >
                         {drink.strAlcoholic}
 
                       </p>
                       <h1
+                        data-testid={ `${amount}-recomendation-title` }
                         className="card-name"
                       >
                         {drink.strDrink}
@@ -114,14 +151,9 @@ function DetailsFood() {
           </div>
         ))
       }
-      <button
-        data-testid="start-recipe-btn"
-        type="button"
-        className="button-details"
-
-      >
-        Start Recipe
-      </button>
+      {
+        continueRecipes ? buttonContinue : buttonStart
+      }
     </div>
 
   );

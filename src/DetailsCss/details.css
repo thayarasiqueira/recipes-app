@@ -12,9 +12,13 @@
 
 .button-details {
   bottom: 0;
-  font-size: 50px;
+  font-size: 20px;
   position: fixed;
 
+}
+
+.card-category {
+  margin-bottom: -10px;
 }
 
 .card-name {
