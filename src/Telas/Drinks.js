@@ -1,9 +1,10 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import Footer from '../components/Footer';
 import ContextDrinks from '../context/ContextDrinks';
 import CardDrink from '../components/CardDrink';
 import Header from '../components/Header';
+import ContextFood from '../context/ContextFood';
 
 function Drinks() {
   const {
@@ -12,11 +13,17 @@ function Drinks() {
     handleButtonDrink,
     allFunction } = useContext(ContextDrinks);
 
+  const { setSelect } = useContext(ContextFood);
+
+  useEffect(() => {
+    setSelect(true);
+  }, []);
+
   const actualLocationDrinks = useLocation();
   return (
     <body>
       <div>
-        <Header title="Drinks" enableBtn />
+        <Header title="Drinks" enableBtn select />
         {
           categoryApiDrink.map((item, index) => (
             <button

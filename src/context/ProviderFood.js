@@ -14,6 +14,7 @@ function ProviderFood({ children }) {
   const [filterSearch, setFilterSearch] = useState('');
   const [filteredResults, setFilteredResults] = useState([]);
   const [search, setSearch] = useState('');
+  const [select, setSelect] = useState(false);
 
   /* const ActualLocation = () => {
     const actualPath = useLocation();
@@ -71,9 +72,15 @@ function ProviderFood({ children }) {
 
   async function searchByFirstLetter(firstletter) {
     try {
-      const response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?f=${firstletter}`);
-      const data = await response.json();
-      setFilteredResults(data.meals);
+      if (select === true) {
+        const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${firstletter}`);
+        const data = await response.json();
+        setFilteredResults(data.drinks);
+      } else {
+        const response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?f=${firstletter}`);
+        const data = await response.json();
+        setFilteredResults(data.meals);
+      }
     } catch (e) {
       console.log(e);
     }
@@ -81,9 +88,15 @@ function ProviderFood({ children }) {
 
   async function searchByName(name) {
     try {
-      const response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${name}`);
-      const data = await response.json();
-      setFilteredResults(data.meals);
+      if (select === true) {
+        const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${name}`);
+        const data = await response.json();
+        setFilteredResults(data.drinks);
+      } else {
+        const response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${name}`);
+        const data = await response.json();
+        setFilteredResults(data.meals);
+      }
     } catch (e) {
       console.log(e);
     }
@@ -91,15 +104,24 @@ function ProviderFood({ children }) {
 
   async function searchByIngredient(ingredient) {
     try {
-      const response = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}`);
-      const data = await response.json();
-      setFilteredResults(data.meals);
+      if (select === true) {
+        console.log('entrou');
+        const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${ingredient}`);
+        const data = await response.json();
+        setFilteredResults(data.drinks);
+      } else {
+        console.log('entrou errado');
+        const response = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}`);
+        const data = await response.json();
+        setFilteredResults(data.meals);
+      }
     } catch (e) {
       console.log(e);
     }
   }
 
   function handleFilterSearch() {
+    console.log(select);
     if (filterSearch === 'First Letter' && search.length === 1) {
       searchByFirstLetter(search);
     } else if (filterSearch === 'First Letter' && search.length !== 1) {
@@ -127,6 +149,7 @@ function ProviderFood({ children }) {
     handleChange,
     handleFilterSearch,
     handleSearch,
+    setSelect,
   };
 
   return (
