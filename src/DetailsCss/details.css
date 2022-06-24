@@ -1,5 +1,7 @@
-.recomended{
-    
+.recomended {
+  display: flex;
+  flex-direction: row;
+  overflow-x: scroll;
 }
 
 .card-recomended {
@@ -9,11 +11,11 @@
 }
 
 .card-titulo {
-  padding-bottom: 0px;
   margin-bottom: -10px;
+  padding-bottom: -1px;
 
 }
 
 .card-name {
-    font-size: 25px;
+  font-size: 25px;
 }

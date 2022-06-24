@@ -66,8 +66,8 @@ function DetailsFood() {
               <h6>Vídeo</h6>
               <iframe
                 data-testid="video"
-                width="340"
-                height="640"
+                width="240"
+                height="340"
                 src={ `https://www.youtube.com/embed/${item.strYoutube.split('=')[1]}` }
                 title="YouTube video player"
                 frameBorder="0"
@@ -91,8 +91,8 @@ function DetailsFood() {
                       <img
                         src={ drink.strDrinkThumb }
                         alt="ilustração"
-                        height="150"
-                        width="150"
+                        height="200"
+                        width="170"
                       />
                       <p
                         className="card-titulo"
