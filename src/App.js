@@ -8,8 +8,8 @@ import Explore from './Telas/Explore';
 import ExploreDrinks from './Telas/ExploreDrinks';
 import ExploreFoods from './Telas/ExploreFoods';
 import Profile from './Telas/Profile';
-// import DetailsDrink from './Telas/DetailsDrink';
-// import DetailsFood from './Telas/DetailsFood';
+import DetailsDrink from './Telas/DetailsDrink';
+import DetailsFood from './Telas/DetailsFood';
 // import InProgress from './Telas/InProgress';
 import DoneRecipes from './Telas/DoneRecipes';
 import FavoriteRecipes from './Telas/FavoriteRecipes';
@@ -23,8 +23,8 @@ function App() {
       <Route exact path="/" component={ Login } />
       <Route exact path="/foods" component={ Food } />
       <Route exact path="/drinks" component={ Drinks } />
-      {/* <Route exact path="/foods/:id" component={ DetailsDrink } />
-      <Route exact path="/drinks/:id" component={ DetailsFood } /> */}
+      <Route exact path="/foods/:id" component={ DetailsDrink } />
+      <Route exact path="/drinks/:id" component={ DetailsFood } />
       {/* <Route exact path="/foods/:id/in-progress" component={ InProgress } />
       <Route exact path="/drinks/:id/in-progress" component={ InProgress } /> */}
       <Route exact path="/explore" component={ Explore } />

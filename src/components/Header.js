@@ -7,7 +7,7 @@ import HeaderSearch from './HeaderSearch';
 import ContextFood from '../context/ContextFood';
 
 function Header({ title, enableBtn = false }) {
-  const { handleSearch, filteredResults } = useContext(ContextFood);
+  const { handleSearch } = useContext(ContextFood);
   const [enableInput, setEnableInput] = useState(false);
 
   const handleClick = () => {
@@ -42,9 +42,6 @@ function Header({ title, enableBtn = false }) {
         <HeaderSearch />
       </>
     )}
-      {filteredResults.length > 0 && filteredResults.map((e, index) => (
-        <p key={ index }>{e.strMeal}</p>
-      ))}
     </section>
 
   );

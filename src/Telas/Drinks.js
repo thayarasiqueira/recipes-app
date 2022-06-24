@@ -1,4 +1,5 @@
 import React, { useContext, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { useLocation } from 'react-router-dom';
 import Footer from '../components/Footer';
 import ContextDrinks from '../context/ContextDrinks';
@@ -6,18 +7,24 @@ import CardDrink from '../components/CardDrink';
 import Header from '../components/Header';
 import ContextFood from '../context/ContextFood';
 
-function Drinks() {
+function Drinks({ history }) {
   const {
     categoryApiDrink,
     arrayPatternDrink,
     handleButtonDrink,
     allFunction } = useContext(ContextDrinks);
 
-  const { setSelect } = useContext(ContextFood);
+  const { setSelect, select, filteredResults } = useContext(ContextFood);
 
   useEffect(() => {
     setSelect(true);
   }, []);
+
+  useEffect(() => {
+    if (select === true && filteredResults.length === 1) {
+      history.push(`/drinks/${filteredResults[0].idDrink}`);
+    }
+  }, [filteredResults]);
 
   const actualLocationDrinks = useLocation();
   return (
@@ -71,5 +78,9 @@ function Drinks() {
     </body>
   );
 }
+
+Drinks.propTypes = {
+  history: PropTypes.objectOf(PropTypes.objectOf).isRequired,
+};
 
 export default Drinks;

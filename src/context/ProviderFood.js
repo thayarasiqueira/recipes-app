@@ -105,10 +105,10 @@ function ProviderFood({ children }) {
   async function searchByIngredient(ingredient) {
     try {
       if (select === true) {
-        console.log('entrou');
         const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${ingredient}`);
         const data = await response.json();
         setFilteredResults(data.drinks);
+        console.log(data.drinks);
       } else {
         console.log('entrou errado');
         const response = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}`);
@@ -121,7 +121,6 @@ function ProviderFood({ children }) {
   }
 
   function handleFilterSearch() {
-    console.log(select);
     if (filterSearch === 'First Letter' && search.length === 1) {
       searchByFirstLetter(search);
     } else if (filterSearch === 'First Letter' && search.length !== 1) {
@@ -143,6 +142,7 @@ function ProviderFood({ children }) {
     pathFood,
     filterSearch,
     filteredResults,
+    select,
     setPathFood,
     handlebuttonFood,
     allFunction,
