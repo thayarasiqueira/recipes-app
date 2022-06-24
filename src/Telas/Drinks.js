@@ -9,7 +9,7 @@ function Drinks() {
     handleButtonDrink,
     allFunction } = useContext(ContextDrinks);
   return (
-    <body>
+    <div>
       <div>
         {
           categoryApiDrink.map((item, index) => (
@@ -54,7 +54,7 @@ function Drinks() {
         }
 
       </div>
-    </body>
+    </div>
 
   );
 }

@@ -1,14 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
-function CardReceitas({ nameReceita, imageReceita, indexReceita, idReceita }) {
+function CardDrink({ nameReceita, imageReceita, indexReceita, idReceita }) {
+  const history = useHistory();
   return (
+
     <div
       data-testid={ `${indexReceita}-recipe-card` }
     >
-      <Link
-        to={ `/drinks/${idReceita}` }
+      <button
+        type="button"
+        onClick={ () => { history.push(`/drinks/${idReceita}`); } }
       >
         <img
           data-testid={ `${indexReceita}-card-img` }
@@ -21,14 +24,14 @@ function CardReceitas({ nameReceita, imageReceita, indexReceita, idReceita }) {
 
           {nameReceita}
         </div>
-      </Link>
+      </button>
     </div>
   );
 }
 
-export default CardReceitas;
+export default CardDrink;
 /* */
-CardReceitas.propTypes = {
+CardDrink.propTypes = {
   nameReceita: PropTypes.node.isRequired,
   imageReceita: PropTypes.node.isRequired,
   indexReceita: PropTypes.node.isRequired,

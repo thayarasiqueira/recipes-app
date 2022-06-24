@@ -54,6 +54,7 @@ function ProviderFood({ children }) {
   async function allFunction() {
     apiFood();
   }
+
   const contextType = {
     categoryApiFood,
     arrayPatternFood,
