@@ -25,7 +25,7 @@ function Food({ history }) {
 
   const actualLocation = useLocation();
   return (
-    <body>
+    <div>
       <div>
         <Header title="Foods" enableBtn />
         {
@@ -73,7 +73,7 @@ function Food({ history }) {
         }
       </div>
       { actualLocation.pathname === '/foods' ? <Footer /> : null}
-    </body>
+    </div>
 
   );
 }
