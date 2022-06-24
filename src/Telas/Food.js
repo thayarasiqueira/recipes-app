@@ -1,17 +1,24 @@
 import React, { useContext } from 'react';
+import { useLocation } from 'react-router-dom';
 import ContextFood from '../context/ContextFood';
-import CardFood from './CardFood';
+import CardFood from '../components/CardFood';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 function Food() {
   const {
     categoryApiFood,
     handlebuttonFood,
     arrayPatternFood,
-    allFunction } = useContext(ContextFood);
+    allFunction,
+    // pathFood,
+  } = useContext(ContextFood);
 
+  const actualLocation = useLocation();
   return (
     <div>
       <div>
+        <Header title="Foods" enableBtn />
         {
           categoryApiFood.map((item, index) => (
 
@@ -56,6 +63,7 @@ function Food() {
 
         }
       </div>
+      { actualLocation.pathname === '/foods' ? <Footer /> : null}
     </div>
 
   );

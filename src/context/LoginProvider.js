@@ -6,6 +6,7 @@ export default function LoginProvider({ children }) {
   const [userEmail, setEmail] = useState({ email: '' });
   const [password, setPassword] = useState('');
   const [disabled, setDisabled] = useState(true);
+  const [pathFood, setPathFood] = useState('/foods');
 
   const handlechangeEmail = ({ target }) => {
     setEmail({ email: target.value });
@@ -28,12 +29,15 @@ export default function LoginProvider({ children }) {
   };
 
   const contextLogin = {
+    setEmail,
     password,
     userEmail,
     disabled,
     handlechangeEmail,
     saveEmailStorage,
     handlechangePassword,
+    pathFood,
+    setPathFood,
   };
 
   return (
