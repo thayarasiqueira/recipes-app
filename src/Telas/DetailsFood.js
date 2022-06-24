@@ -95,7 +95,6 @@ function DetailsFood() {
                         width="170"
                       />
                       <p
-                        className="card-titulo"
                         data-testid={ `${amount}-recomendation-title` }
                       >
                         {drink.strAlcoholic}
@@ -118,6 +117,8 @@ function DetailsFood() {
       <button
         data-testid="start-recipe-btn"
         type="button"
+        className="button-details"
+
       >
         Start Recipe
       </button>

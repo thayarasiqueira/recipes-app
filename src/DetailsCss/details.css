@@ -10,9 +10,10 @@
 
 }
 
-.card-titulo {
-  margin-bottom: -10px;
-  padding-bottom: -1px;
+.button-details {
+  bottom: 0;
+  font-size: 50px;
+  position: fixed;
 
 }
 
