@@ -7,7 +7,7 @@ function ProviderDetailsFood({ children }) {
   // MagicNumber
   const TWENTY = 20;
   const SIX = 6;
-  // ---------------------------------------------------------
+  // --------------------------------------------------------
   const history = useHistory();
   const [arrayId, setArrayId] = useState([]);
   const [arrayIngredients, setArrayIngredients] = useState([]);

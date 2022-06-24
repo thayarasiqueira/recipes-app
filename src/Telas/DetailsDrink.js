@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import ContextDetailsDrinks from '../context/DetailsDrinks/ContextDetailsDrinks';
+import '../DetailsCss/details.css';
 
 function DetailsDrink() {
   const { arrayId, functionPullId,
@@ -62,29 +63,41 @@ function DetailsDrink() {
             </div>
             <div>
               <h6> Recommended </h6>
-              {
-                console.log(arrayPatternFood)
-              }
-              {
-                arrayPatternFood.map((food, amount) => (
-                  <div
-                    data-testid={ `${amount}-recomendation-card` }
-                    key={ amount }
-                  >
-                    <img
-                      src={ food.strMealThumb }
-                      alt="ilustração"
-                    />
-                    <p
-                      data-testid={ `${amount}-recomendation-title` }
+              <div
+                className="recomended"
+              >
+                {
+                  console.log(arrayPatternFood)
+                }
+                {
+                  arrayPatternFood.map((food, amount) => (
+                    <div
+                      className="card-recomended"
+                      data-testid={ `${amount}-recomendation-card` }
+                      key={ amount }
                     >
-                      {food.strCategory}
+                      <img
+                        src={ food.strMealThumb }
+                        alt="ilustração"
+                        height="200"
+                        width="170"
+                      />
+                      <p
+                        data-testid={ `${amount}-recomendation-title` }
+                      >
+                        {food.strCategory}
 
-                    </p>
-                    <h1>{food.strMeal}</h1>
-                  </div>
-                ))
-              }
+                      </p>
+                      <h1
+                        className="card-name"
+                      >
+                        {food.strMeal}
+
+                      </h1>
+                    </div>
+                  ))
+                }
+              </div>
             </div>
           </div>
         ))
@@ -92,6 +105,7 @@ function DetailsDrink() {
       <button
         data-testid="start-recipe-btn"
         type="button"
+        className="button-details"
       >
         Start Recipe
       </button>
