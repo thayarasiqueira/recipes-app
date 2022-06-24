@@ -16,7 +16,7 @@ function Food() {
 
   const actualLocation = useLocation();
   return (
-    <body>
+    <div>
       <div>
         <Header title="Foods" enableBtn />
         {
@@ -64,7 +64,7 @@ function Food() {
         }
       </div>
       { actualLocation.pathname === '/foods' ? <Footer /> : null}
-    </body>
+    </div>
 
   );
 }
