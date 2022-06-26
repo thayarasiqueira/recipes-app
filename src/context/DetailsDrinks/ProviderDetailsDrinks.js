@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 import ContextDetailsDrinks from './ContextDetailsDrinks';
 
+const copy = require('clipboard-copy');
+
 function ProviderDetailsDrinks({ children }) {
   // MagicNumber
   const TWENTY = 20;
@@ -14,11 +16,11 @@ function ProviderDetailsDrinks({ children }) {
   const [arrayPatternFood, setArrayPatternFood] = useState([]);
   const [performedRecipes, setPerformedRecipes] = useState(false);
   const [continueRecipes, setContinueRecipes] = useState(false);
+  const [textCopyLink, setTextCopyLink] = useState(false);
   async function functionPullId() {
     try {
       const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${(history.location.pathname.split('/')[2])}`);
       const data = await response.json();
-      console.log(data);
       setArrayId(data.drinks);
       const revenue = data.drinks;
       const setIngredients = [];
@@ -80,6 +82,11 @@ function ProviderDetailsDrinks({ children }) {
     }
   }
 
+  function clickCopy() {
+    copy(`http://localhost:3000${history.location.pathname}`);
+    setTextCopyLink(true);
+  }
+
   const contextType = {
     arrayId,
     functionPullId,
@@ -89,6 +96,8 @@ function ProviderDetailsDrinks({ children }) {
     continueRecipes,
     doneRecipes,
     inProgressRecipes,
+    clickCopy,
+    textCopyLink,
   };
 
   return (

@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
+import shareImage from '../images/shareIcon.svg';
 import ContextDetailsDrinks from '../context/DetailsDrinks/ContextDetailsDrinks';
 import '../DetailsCss/details.css';
 
@@ -9,7 +10,8 @@ function DetailsDrink() {
     arrayIngredients, arrayPatternFood,
     performedRecipes,
     continueRecipes, doneRecipes,
-    inProgressRecipes } = useContext(ContextDetailsDrinks);
+    inProgressRecipes, clickCopy,
+    textCopyLink } = useContext(ContextDetailsDrinks);
 
   useEffect(() => {
     functionPullId();
@@ -45,6 +47,19 @@ function DetailsDrink() {
 
     </button>
   );
+
+  const buttonShare = (
+    <button
+      data-testid="share-btn"
+      type="button"
+      onClick={ () => { clickCopy(); } }
+    >
+      <img
+        src={ shareImage }
+        alt="Compartilhar"
+      />
+    </button>
+  );
   return (
     <div>
       {
@@ -62,12 +77,11 @@ function DetailsDrink() {
             >
               {item.strDrink}
             </h1>
-            <button
-              data-testid="share-btn"
-              type="button"
-            >
-              Compartilhar
-            </button>
+            {
+              textCopyLink
+                ? <p>Link copied!</p>
+                : buttonShare
+            }
             <button
               data-testid="favorite-btn"
               type="button"
@@ -103,9 +117,6 @@ function DetailsDrink() {
               <div
                 className="recomended"
               >
-                {
-                  console.log(arrayPatternFood)
-                }
                 {
                   arrayPatternFood.map((food, amount) => (
                     <div

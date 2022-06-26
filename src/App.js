@@ -37,7 +37,7 @@ function App() {
           <Route exact path="/explore" component={ Explore } />
           <Route exact path="/explore/foods" component={ ExploreFoods } />
           <Route exact path="/explore/drinks" component={ ExploreDrinks } />
-          <Route path="/foods/:id/in-progress" component={ InProgress } />
+          <Route exact path="/foods/:id/in-progress" component={ InProgress } />
           <Route
             exact
             path="/explore/foods/ingredients"

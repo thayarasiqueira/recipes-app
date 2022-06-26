@@ -1,5 +1,8 @@
 import React, { useContext, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
+import shareImage from '../images/shareIcon.svg';
+import favoritImageHeart from '../images/whiteHeartIcon.svg';
+import favoritImageBlackHeart from '../images/blackHeartIcon.svg';
 import ContextDetailsFood from '../context/ContextDetailsFood';
 import '../DetailsCss/details.css';
 
@@ -7,11 +10,16 @@ function DetailsFood() {
   const { arrayId, functionPullId,
     arrayIngredients, arrayPatternDrink,
     performedRecipes, doneRecipes,
-    inProgressRecipes, continueRecipes } = useContext(ContextDetailsFood);
+    inProgressRecipes, continueRecipes,
+    clickCopy, textCopyLink,
+    favoritBlackHeart, checkHeartBlack,
+    clickHeartBlack } = useContext(ContextDetailsFood);
+
   useEffect(() => {
     functionPullId();
     doneRecipes();
     inProgressRecipes();
+    checkHeartBlack();
   }, []);
   const history = useHistory();
 
@@ -45,6 +53,19 @@ function DetailsFood() {
     </button>
   );
 
+  const buttonShare = (
+    <button
+      data-testid="share-btn"
+      type="button"
+      onClick={ () => { clickCopy(); } }
+    >
+      <img
+        src={ shareImage }
+        alt="Compartilhar"
+      />
+    </button>
+  );
+
   return (
     <div>
       {
@@ -62,17 +83,23 @@ function DetailsFood() {
             >
               {item.strMeal}
             </h1>
-            <button
-              data-testid="share-btn"
-              type="button"
-            >
-              Compartilhar
-            </button>
+
+            {
+              textCopyLink
+                ? <p>Link copied!</p>
+                : buttonShare
+
+            }
+
             <button
               data-testid="favorite-btn"
               type="button"
+              onClick={ () => { clickHeartBlack(); } }
             >
-              Favoritar
+              <img
+                src={ favoritBlackHeart ? favoritImageBlackHeart : favoritImageHeart }
+                alt="Favorit"
+              />
             </button>
             <h3
               data-testid="recipe-category"

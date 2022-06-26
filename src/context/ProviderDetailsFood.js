@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 import ContextDetailsFood from './ContextDetailsFood';
 
+const copy = require('clipboard-copy');
+
 function ProviderDetailsFood({ children }) {
   // MagicNumber
   const TWENTY = 20;
@@ -15,6 +17,8 @@ function ProviderDetailsFood({ children }) {
   const [arrayPatternDrink, setArrayPatternDrink] = useState([]);
   const [performedRecipes, setPerformedRecipes] = useState(false);
   const [continueRecipes, setContinueRecipes] = useState(false);
+  const [textCopyLink, setTextCopyLink] = useState(false);
+  const [favoritBlackHeart, serFavoritBlackHeart] = useState(false);
   async function functionPullId() {
     try {
       const response = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${(history.location.pathname.split('/')[2])}`);
@@ -73,6 +77,26 @@ function ProviderDetailsFood({ children }) {
     }
   }
 
+  function clickCopy() {
+    copy(`http://localhost:3000${history.location.pathname}`);
+    setTextCopyLink(true);
+  }
+
+  function checkHeartBlack() {
+    const localFavorit = localStorage.getItem('favoriteRecipes');
+    if (localFavorit !== null) {
+      for (let i = 0; i < localFavorit.length; i += 1) {
+        if (localFavorit[i].id === idHistory) {
+          serFavoritBlackHeart(!favoritBlackHeart);
+          break;
+        }
+      }
+    }
+  }
+
+  function clickHeartBlack() {
+    serFavoritBlackHeart(!favoritBlackHeart);
+  }
   const contextType = {
     arrayId,
     functionPullId,
@@ -82,6 +106,11 @@ function ProviderDetailsFood({ children }) {
     performedRecipes,
     doneRecipes,
     inProgressRecipes,
+    clickCopy,
+    textCopyLink,
+    checkHeartBlack,
+    clickHeartBlack,
+    favoritBlackHeart,
   };
 
   return (
