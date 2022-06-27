@@ -1,0 +1,22 @@
+.recomended {
+  display: flex;
+  flex-direction: row;
+  overflow-x: scroll;
+}
+
+.card-recomended {
+  display: flex;
+  flex-direction: column;
+
+}
+
+.button-details {
+  bottom: 0;
+  font-size: 50px;
+  position: fixed;
+
+}
+
+.card-name {
+  font-size: 25px;
+}
