@@ -42,7 +42,6 @@ function ProviderDrinks({ children }) {
     try {
       const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${name}`);
       const data = await response.json();
-      console.log(data);
       setArrayPatternDrink(data.drinks.slice(0, TWELVE));
     } catch (e) {
       console.log(e);

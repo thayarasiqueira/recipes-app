@@ -1,18 +1,26 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { useLocation } from 'react-router-dom';
 import ContextFood from '../context/ContextFood';
 import CardFood from '../components/CardFood';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
-function Food() {
+function Food({ history }) {
   const {
     categoryApiFood,
     handlebuttonFood,
     arrayPatternFood,
     allFunction,
+    filteredResults,
     // pathFood,
   } = useContext(ContextFood);
+
+  useEffect(() => {
+    if (filteredResults.length === 1) {
+      history.push(`/foods/${filteredResults[0].idMeal}`);
+    }
+  }, [filteredResults]);
 
   const actualLocation = useLocation();
   return (
@@ -46,9 +54,23 @@ function Food() {
         </button>
       </div>
       <div>
+        {
+          filteredResults.map((e, i) => (
+            <div
+              key={ i }
+            >
+              <CardFood
+                nameReceita={ e.strMeal }
+                imageReceita={ e.strMealThumb }
+                indexReceita={ i }
+                idReceita={ e.idMeal }
+              />
+            </div>
+          ))
+        }
 
         {
-          arrayPatternFood.map((item, index) => (
+          filteredResults.length === 0 && arrayPatternFood.map((item, index) => (
             <div
               key={ index }
             >
@@ -68,5 +90,9 @@ function Food() {
 
   );
 }
+
+Food.propTypes = {
+  history: PropTypes.objectOf(PropTypes.objectOf).isRequired,
+};
 
 export default Food;
