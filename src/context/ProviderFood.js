@@ -143,6 +143,7 @@ function ProviderFood({ children }) {
     filterSearch,
     filteredResults,
     select,
+    search,
     setPathFood,
     handlebuttonFood,
     allFunction,

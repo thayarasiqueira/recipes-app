@@ -14,21 +14,29 @@ function Food({ history }) {
     handlebuttonFood,
     arrayPatternFood,
     allFunction,
-    select,
     filteredResults,
     // pathFood,
   } = useContext(ContextFood);
 
   useEffect(() => {
-    if (select === false && filteredResults.length === 1) {
+    switch (filteredResults ? filteredResults.length : filteredResults) {
+    case null:
+      global.alert('Sorry, we haven\'t found any recipes for these filters.');
+      break;
+    case 1:
+
       history.push(`/foods/${filteredResults[0].idMeal}`);
-    }
-    if (filteredResults.length > arrayNumber) {
-      array = filteredResults.slice(0, arrayNumber);
-    } else if (filteredResults > 1) {
+      break;
+    default:
       array = filteredResults;
     }
   }, [filteredResults]);
+
+  useEffect(() => {
+    if (array.length > arrayNumber) {
+      array = filteredResults.slice(0, arrayNumber);
+    }
+  }, [array]);
 
   const actualLocation = useLocation();
   return (
@@ -63,7 +71,7 @@ function Food({ history }) {
       </div>
       <div>
         {
-          filteredResults.length > 1 && array.map((e, i) => (
+          filteredResults && filteredResults.length > 1 ? array.map((e, i) => (
             <div
               key={ i }
             >
@@ -74,7 +82,7 @@ function Food({ history }) {
                 idReceita={ e.idMeal }
               />
             </div>
-          ))
+          )) : null
         }
 
         {

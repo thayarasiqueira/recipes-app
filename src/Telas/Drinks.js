@@ -8,6 +8,7 @@ import Header from '../components/Header';
 import ContextFood from '../context/ContextFood';
 
 const arrayNumber = 12;
+let array = [];
 function Drinks({ history }) {
   const {
     categoryApiDrink,
@@ -15,22 +16,30 @@ function Drinks({ history }) {
     handleButtonDrink,
     allFunction } = useContext(ContextDrinks);
 
-  const { setSelect, select, filteredResults } = useContext(ContextFood);
+  const { setSelect, filteredResults } = useContext(ContextFood);
 
   useEffect(() => {
     setSelect(true);
-  }, []);
+  });
 
   useEffect(() => {
-    if (select === true && filteredResults.length === 1) {
+    switch (filteredResults ? filteredResults.length : filteredResults) {
+    case null:
+      global.alert('Sorry, we haven\'t found any recipes for these filters.');
+      break;
+    case 1:
       history.push(`/drinks/${filteredResults[0].idDrink}`);
-    }
-    if (filteredResults.length > arrayNumber) {
-      array = filteredResults.slice(0, arrayNumber);
-    } else if (filteredResults > 1) {
+      break;
+    default:
       array = filteredResults;
     }
   }, [filteredResults]);
+
+  useEffect(() => {
+    if (array.length > arrayNumber) {
+      array = filteredResults.slice(0, arrayNumber);
+    }
+  }, [array]);
 
   const actualLocationDrinks = useLocation();
   return (
@@ -63,7 +72,7 @@ function Drinks({ history }) {
       </div>
       <div>
         {
-          filteredResults.length > 1 && array.map((e, i) => (
+          filteredResults && filteredResults.length > 1 ? array.map((e, i) => (
             <div
               key={ i }
             >
@@ -74,7 +83,7 @@ function Drinks({ history }) {
                 idReceita={ e.idDrink }
               />
             </div>
-          ))
+          )) : null
 
         }
 
