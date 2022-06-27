@@ -1,12 +1,15 @@
 import React, { useContext } from 'react';
 import ContextIngredients from '../context/ContextIngredients';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 
-export default function ExploreDrinksIngredients() {
+function ExploreDrinksIngredients() {
   const TWELVE = 12;
   const { ingredientsDrinks } = useContext(ContextIngredients);
   console.log(ingredientsDrinks);
   return (
     <main>
+      <Header title="Explore Ingredients" />
       {ingredientsDrinks.slice(0, TWELVE).map(({ strIngredient1: ingredient }, index) => {
         const URLIMG = `https://www.thecocktaildb.com/images/ingredients/${ingredient}-Small.png`;
         return (
@@ -27,6 +30,9 @@ export default function ExploreDrinksIngredients() {
           </div>
         );
       })}
+      <Footer />
     </main>
   );
 }
+
+export default ExploreDrinksIngredients;

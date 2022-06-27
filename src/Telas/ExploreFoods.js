@@ -7,7 +7,7 @@ import { surpriseMeFood } from '../components/SurpriseMeRequest';
 export default function ExploreFoods({ history }) {
   return (
     <div>
-      <Header />
+      <Header title="Explore Foods" />
       <button
         type="button"
         data-testid="explore-by-ingredient"

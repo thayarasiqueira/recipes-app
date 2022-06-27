@@ -7,8 +7,8 @@ import LoginContext from '../context/LoginContext';
 export default function Profile() {
   // const initialPosition = 10;
   // const finalPosition = 26;
-  // const userEmailSub = emailFromLocal.substring(initialPosition, finalPosition);
   const emailFromLocal = localStorage.getItem('user');
+  // const userEmailSub = emailFromLocal.substring(initialPosition, finalPosition);
   // Aqui o cypress nâo ta deixando descontruir ou modificar o email que vem do localStorage. Tentei de várias formas e o 10 sempre falha, então deixei ele nesse formato por enquanto porque aĩ todos os requisitos que fizemos até agora passam.
 
   const { setEmail } = useContext(LoginContext);
@@ -22,7 +22,8 @@ export default function Profile() {
     <main>
       <Header title="Profile" />
       <section>
-        <h3 data-testid="profile-email">{ emailFromLocal }</h3>
+        <h3 data-testid="profile-email">{emailFromLocal}</h3>
+
       </section>
       <section>
         <Link to="/done-recipes">

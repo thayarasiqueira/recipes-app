@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import { useLocation } from 'react-router-dom';
 import Footer from '../components/Footer';
-import Header from '../components/Header';
 import ContextDrinks from '../context/ContextDrinks';
-import CardDrink from './CardDrink';
+import CardDrink from '../components/CardDrink';
+import Header from '../components/Header';
 
 function Drinks() {
   const {
@@ -14,9 +14,9 @@ function Drinks() {
 
   const actualLocationDrinks = useLocation();
   return (
-    <body>
-      <Header />
+    <div>
       <div>
+        <Header title="Drinks" enableBtn />
         {
           categoryApiDrink.map((item, index) => (
             <button
@@ -60,8 +60,8 @@ function Drinks() {
         }
 
       </div>
-      {actualLocationDrinks.pathname === '/drinks' ? <Footer /> : <p>erro</p>}
-    </body>
+      {actualLocationDrinks.pathname === '/drinks' ? <Footer /> : null}
+    </div>
 
   );
 }

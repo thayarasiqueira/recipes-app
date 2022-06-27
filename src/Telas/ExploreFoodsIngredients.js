@@ -1,5 +1,7 @@
 import React, { useContext } from 'react';
 import ContextIngredients from '../context/ContextIngredients';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 function ExploreFoodsIngredients() {
   const { ingredientsFood } = useContext(ContextIngredients);
@@ -7,6 +9,7 @@ function ExploreFoodsIngredients() {
   console.log(ingredientsFood);
   return (
     <div>
+      <Header title="Explore Ingredients" />
       { ingredientsFood.slice(0, TWELVE).map(({ strIngredient: ingredient }, index) => {
         const URL = `https://www.themealdb.com/images/ingredients/${ingredient}-Small.png`;
         return (
@@ -25,6 +28,7 @@ function ExploreFoodsIngredients() {
           </div>
         );
       })}
+      <Footer />
     </div>
   );
 }
