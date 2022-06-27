@@ -22,6 +22,17 @@ function ProviderFood({ children }) {
     setPathFood(actualPath);
   };
  */
+
+  useEffect(() => {
+    switch (filteredResults) {
+    case null:
+      global.alert('Sorry, we haven\'t found any recipes for these filters.');
+      break;
+    default:
+      console.log('searching...');
+    }
+  }, [filteredResults]);
+
   async function apiFood() {
     try {
       const response = await fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=');
@@ -76,11 +87,11 @@ function ProviderFood({ children }) {
       if (select === true) {
         const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${firstletter}`);
         const data = await response.json();
-        setFilteredResults(data.drinks);
+        setFilteredResults(data.drinks.slice(0, TWELVE));
       } else {
         const response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?f=${firstletter}`);
         const data = await response.json();
-        setFilteredResults(data.meals);
+        setFilteredResults(data.meals.slice(0, TWELVE));
       }
     } catch (e) {
       global.alert(alertMsg);
@@ -92,11 +103,12 @@ function ProviderFood({ children }) {
       if (select === true) {
         const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${name}`);
         const data = await response.json();
-        setFilteredResults(data.drinks);
+        setFilteredResults(data.drinks.slice(0, TWELVE));
       } else {
         const response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${name}`);
         const data = await response.json();
-        setFilteredResults(data.meals);
+        console.log(data.meals);
+        setFilteredResults(data.meals.slice(0, TWELVE));
       }
     } catch (e) {
       global.alert(alertMsg);
@@ -108,11 +120,11 @@ function ProviderFood({ children }) {
       if (select === true) {
         const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${ingredient}`);
         const data = await response.json();
-        setFilteredResults(data.drinks);
+        setFilteredResults(data.drinks.slice(0, TWELVE));
       } else {
         const response = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}`);
         const data = await response.json();
-        setFilteredResults(data.meals);
+        setFilteredResults(data.meals.slice(0, TWELVE));
       }
     } catch (e) {
       global.alert(alertMsg);

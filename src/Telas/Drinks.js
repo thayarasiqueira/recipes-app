@@ -7,8 +7,6 @@ import CardDrink from '../components/CardDrink';
 import Header from '../components/Header';
 import ContextFood from '../context/ContextFood';
 
-const arrayNumber = 12;
-let array = [];
 function Drinks({ history }) {
   const {
     categoryApiDrink,
@@ -23,23 +21,10 @@ function Drinks({ history }) {
   });
 
   useEffect(() => {
-    switch (filteredResults ? filteredResults.length : filteredResults) {
-    case null:
-      global.alert('Sorry, we haven\'t found any recipes for these filters.');
-      break;
-    case 1:
+    if (filteredResults.length === 1) {
       history.push(`/drinks/${filteredResults[0].idDrink}`);
-      break;
-    default:
-      array = filteredResults;
     }
   }, [filteredResults]);
-
-  useEffect(() => {
-    if (array.length > arrayNumber) {
-      array = filteredResults.slice(0, arrayNumber);
-    }
-  }, [array]);
 
   const actualLocationDrinks = useLocation();
   return (
@@ -72,7 +57,7 @@ function Drinks({ history }) {
       </div>
       <div>
         {
-          filteredResults && filteredResults.length > 1 ? array.map((e, i) => (
+          filteredResults.map((e, i) => (
             <div
               key={ i }
             >
@@ -83,7 +68,7 @@ function Drinks({ history }) {
                 idReceita={ e.idDrink }
               />
             </div>
-          )) : null
+          ))
 
         }
 
