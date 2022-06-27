@@ -1,13 +1,70 @@
 import React, { useContext, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
+import shareImage from '../images/shareIcon.svg';
+import favoritImageHeart from '../images/whiteHeartIcon.svg';
+import favoritImageBlackHeart from '../images/blackHeartIcon.svg';
 import ContextDetailsFood from '../context/ContextDetailsFood';
 import '../DetailsCss/details.css';
 
 function DetailsFood() {
   const { arrayId, functionPullId,
-    arrayIngredients, arrayPatternDrink } = useContext(ContextDetailsFood);
+    arrayIngredients, arrayPatternDrink,
+    performedRecipes, doneRecipes,
+    inProgressRecipes, continueRecipes,
+    clickCopy, textCopyLink,
+    favoritBlackHeart, checkHeartBlack,
+    clickHeartBlack } = useContext(ContextDetailsFood);
+
   useEffect(() => {
     functionPullId();
+    doneRecipes();
+    inProgressRecipes();
+    checkHeartBlack();
   }, []);
+  const history = useHistory();
+
+  const buttonContinue = (
+    <button
+      data-testid="start-recipe-btn"
+      type="button"
+      className="button-details"
+      disabled={ performedRecipes }
+      onClick={ () => { history.push('/foods/'); } }
+    >
+
+      Continue Recipe
+
+    </button>
+  );
+
+  const buttonStart = (
+    <button
+      data-testid="start-recipe-btn"
+      type="button"
+      className="button-details"
+      disabled={ performedRecipes }
+      onClick={ () => {
+        history.push(`/foods/${history.location.pathname.split('/')[2]}/in-progress`);
+      } }
+    >
+
+      Start Recipe
+
+    </button>
+  );
+
+  const buttonShare = (
+    <button
+      data-testid="share-btn"
+      type="button"
+      onClick={ () => { clickCopy(); } }
+    >
+      <img
+        src={ shareImage }
+        alt="Compartilhar"
+      />
+    </button>
+  );
 
   return (
     <div>
@@ -26,17 +83,23 @@ function DetailsFood() {
             >
               {item.strMeal}
             </h1>
-            <button
-              data-testid="share-btn"
-              type="button"
-            >
-              Compartilhar
-            </button>
+
+            {
+              textCopyLink
+                ? <p>Link copied!</p>
+                : buttonShare
+
+            }
+
             <button
               data-testid="favorite-btn"
               type="button"
+              onClick={ () => { clickHeartBlack(); } }
             >
-              Favoritar
+              <img
+                src={ favoritBlackHeart ? favoritImageBlackHeart : favoritImageHeart }
+                alt="Favorit"
+              />
             </button>
             <h3
               data-testid="recipe-category"
@@ -92,15 +155,16 @@ function DetailsFood() {
                         src={ drink.strDrinkThumb }
                         alt="ilustração"
                         height="200"
-                        width="170"
+                        width="180"
                       />
                       <p
-                        data-testid={ `${amount}-recomendation-title` }
+                        className="card-category"
                       >
                         {drink.strAlcoholic}
 
                       </p>
                       <h1
+                        data-testid={ `${amount}-recomendation-title` }
                         className="card-name"
                       >
                         {drink.strDrink}
@@ -114,14 +178,9 @@ function DetailsFood() {
           </div>
         ))
       }
-      <button
-        data-testid="start-recipe-btn"
-        type="button"
-        className="button-details"
-
-      >
-        Start Recipe
-      </button>
+      {
+        continueRecipes ? buttonContinue : buttonStart
+      }
     </div>
 
   );

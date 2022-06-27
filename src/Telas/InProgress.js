@@ -8,11 +8,11 @@ function InProgress() {
       <h3 data-testid="recipe-category">recipeCategory</h3>
       <p data-testid="instructions">recipeInstructions</p>
       <ul>
-        {recipeIngridients.map((e, index) => (
+        {/* {recipeIngridients.map((e, index) => (
           <li data-testid={ `${index}-ingredient-step` } key={ index }>
             { e }
           </li>
-        ))}
+        ))} */}
       </ul>
       <button data-testid="share-btn" type="button">Compartilhar</button>
       <button data-testid="favorite-btn" type="button">Favoritar</button>

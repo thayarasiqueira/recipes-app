@@ -1,13 +1,65 @@
 import React, { useContext, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
+import shareImage from '../images/shareIcon.svg';
 import ContextDetailsDrinks from '../context/DetailsDrinks/ContextDetailsDrinks';
 import '../DetailsCss/details.css';
 
 function DetailsDrink() {
+  const history = useHistory();
   const { arrayId, functionPullId,
-    arrayIngredients, arrayPatternFood } = useContext(ContextDetailsDrinks);
+    arrayIngredients, arrayPatternFood,
+    performedRecipes,
+    continueRecipes, doneRecipes,
+    inProgressRecipes, clickCopy,
+    textCopyLink } = useContext(ContextDetailsDrinks);
+
   useEffect(() => {
     functionPullId();
+    inProgressRecipes();
+    doneRecipes();
   }, []);
+  const buttonContinue = (
+    <button
+      data-testid="start-recipe-btn"
+      type="button"
+      className="button-details"
+      disabled={ performedRecipes }
+      onClick={ () => { history.push('/drinks/'); } }
+    >
+
+      Continue Recipe
+
+    </button>
+  );
+
+  const buttonStart = (
+    <button
+      data-testid="start-recipe-btn"
+      type="button"
+      className="button-details"
+      disabled={ performedRecipes }
+      onClick={ () => {
+        history.push(`/drinks/${history.location.pathname.split('/')[2]}/in-progress`);
+      } }
+    >
+
+      Start Recipe
+
+    </button>
+  );
+
+  const buttonShare = (
+    <button
+      data-testid="share-btn"
+      type="button"
+      onClick={ () => { clickCopy(); } }
+    >
+      <img
+        src={ shareImage }
+        alt="Compartilhar"
+      />
+    </button>
+  );
   return (
     <div>
       {
@@ -25,12 +77,11 @@ function DetailsDrink() {
             >
               {item.strDrink}
             </h1>
-            <button
-              data-testid="share-btn"
-              type="button"
-            >
-              Compartilhar
-            </button>
+            {
+              textCopyLink
+                ? <p>Link copied!</p>
+                : buttonShare
+            }
             <button
               data-testid="favorite-btn"
               type="button"
@@ -67,9 +118,6 @@ function DetailsDrink() {
                 className="recomended"
               >
                 {
-                  console.log(arrayPatternFood)
-                }
-                {
                   arrayPatternFood.map((food, amount) => (
                     <div
                       className="card-recomended"
@@ -80,15 +128,16 @@ function DetailsDrink() {
                         src={ food.strMealThumb }
                         alt="ilustração"
                         height="200"
-                        width="170"
+                        width="180"
                       />
                       <p
-                        data-testid={ `${amount}-recomendation-title` }
+                        className="card-category"
                       >
                         {food.strCategory}
 
                       </p>
                       <h1
+                        data-testid={ `${amount}-recomendation-title` }
                         className="card-name"
                       >
                         {food.strMeal}
@@ -102,13 +151,9 @@ function DetailsDrink() {
           </div>
         ))
       }
-      <button
-        data-testid="start-recipe-btn"
-        type="button"
-        className="button-details"
-      >
-        Start Recipe
-      </button>
+      {
+        continueRecipes ? buttonContinue : buttonStart
+      }
     </div>
   );
 }
