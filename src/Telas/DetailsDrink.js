@@ -155,7 +155,6 @@ function DetailsDrink() {
         continueRecipes ? buttonContinue : buttonStart
       }
     </div>
-
   );
 }
 

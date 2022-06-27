@@ -25,7 +25,7 @@ export default function ExploreFoods({ history }) {
       <button
         type="button"
         data-testid="explore-surprise"
-        onClick={ async () => surpriseMeFood() }
+        onClick={ async () => history.push(`/foods/${await surpriseMeFood()}`) }
       >
         Surprise me!
       </button>
