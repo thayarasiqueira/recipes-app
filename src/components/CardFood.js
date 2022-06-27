@@ -13,7 +13,7 @@ function CardReceitas({ nameReceita, imageReceita, indexReceita, idReceita }) {
         <img
           data-testid={ `${indexReceita}-card-img` }
           src={ imageReceita }
-          alt="Imagem"
+          alt={ nameReceita }
         />
         <div
           data-testid={ `${indexReceita}-card-name` }

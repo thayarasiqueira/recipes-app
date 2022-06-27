@@ -6,6 +6,8 @@ import CardFood from '../components/CardFood';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
+const arrayNumber = 12;
+let array = [];
 function Food({ history }) {
   const {
     categoryApiFood,
@@ -20,6 +22,11 @@ function Food({ history }) {
   useEffect(() => {
     if (select === false && filteredResults.length === 1) {
       history.push(`/foods/${filteredResults[0].idMeal}`);
+    }
+    if (filteredResults.length > arrayNumber) {
+      array = filteredResults.slice(0, arrayNumber);
+    } else if (filteredResults > 1) {
+      array = filteredResults;
     }
   }, [filteredResults]);
 
@@ -55,6 +62,20 @@ function Food({ history }) {
         </button>
       </div>
       <div>
+        {
+          filteredResults.length > 1 && array.map((e, i) => (
+            <div
+              key={ i }
+            >
+              <CardFood
+                nameReceita={ e.strMeal }
+                imageReceita={ e.strMealThumb }
+                indexReceita={ i }
+                idReceita={ e.idMeal }
+              />
+            </div>
+          ))
+        }
 
         {
           arrayPatternFood.map((item, index) => (

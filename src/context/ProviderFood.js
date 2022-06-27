@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 // import { useLocation } from 'react-router-dom';
 import ContextFood from './ContextFood';
 
+const alertMsg = 'Sorry, we haven\'t found any recipes for these filters.';
 function ProviderFood({ children }) {
   // MagicNumbers
   const TWELVE = 12;
@@ -82,7 +83,7 @@ function ProviderFood({ children }) {
         setFilteredResults(data.meals);
       }
     } catch (e) {
-      console.log(e);
+      global.alert(alertMsg);
     }
   }
 
@@ -98,7 +99,7 @@ function ProviderFood({ children }) {
         setFilteredResults(data.meals);
       }
     } catch (e) {
-      console.log(e);
+      global.alert(alertMsg);
     }
   }
 
@@ -108,15 +109,13 @@ function ProviderFood({ children }) {
         const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${ingredient}`);
         const data = await response.json();
         setFilteredResults(data.drinks);
-        console.log(data.drinks);
       } else {
-        console.log('entrou errado');
         const response = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}`);
         const data = await response.json();
         setFilteredResults(data.meals);
       }
     } catch (e) {
-      console.log(e);
+      global.alert(alertMsg);
     }
   }
 

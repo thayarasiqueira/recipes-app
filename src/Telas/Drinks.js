@@ -7,6 +7,7 @@ import CardDrink from '../components/CardDrink';
 import Header from '../components/Header';
 import ContextFood from '../context/ContextFood';
 
+const arrayNumber = 12;
 function Drinks({ history }) {
   const {
     categoryApiDrink,
@@ -23,6 +24,11 @@ function Drinks({ history }) {
   useEffect(() => {
     if (select === true && filteredResults.length === 1) {
       history.push(`/drinks/${filteredResults[0].idDrink}`);
+    }
+    if (filteredResults.length > arrayNumber) {
+      array = filteredResults.slice(0, arrayNumber);
+    } else if (filteredResults > 1) {
+      array = filteredResults;
     }
   }, [filteredResults]);
 
@@ -56,6 +62,21 @@ function Drinks({ history }) {
         </button>
       </div>
       <div>
+        {
+          filteredResults.length > 1 && array.map((e, i) => (
+            <div
+              key={ i }
+            >
+              <CardDrink
+                nameReceita={ e.strDrink }
+                imageReceita={ e.strDrinkThumb }
+                indexReceita={ i }
+                idReceita={ e.idDrink }
+              />
+            </div>
+          ))
+
+        }
 
         {
           arrayPatternDrink.map((item, index) => (
