@@ -3,15 +3,22 @@ import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 import ContextDetailsFood from './ContextDetailsFood';
 
+const copy = require('clipboard-copy');
+
 function ProviderDetailsFood({ children }) {
   // MagicNumber
   const TWENTY = 20;
   const SIX = 6;
   // --------------------------------------------------------
   const history = useHistory();
+  const idHistory = history.location.pathname.split('/')[2];
   const [arrayId, setArrayId] = useState([]);
   const [arrayIngredients, setArrayIngredients] = useState([]);
   const [arrayPatternDrink, setArrayPatternDrink] = useState([]);
+  const [performedRecipes, setPerformedRecipes] = useState(false);
+  const [continueRecipes, setContinueRecipes] = useState(false);
+  const [textCopyLink, setTextCopyLink] = useState(false);
+  const [favoritBlackHeart, serFavoritBlackHeart] = useState(false);
   async function functionPullId() {
     try {
       const response = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${(history.location.pathname.split('/')[2])}`);
@@ -45,11 +52,65 @@ function ProviderDetailsFood({ children }) {
     apiDrink();
   }, []);
 
+  function doneRecipes() {
+    const doneLocalStorage = localStorage.getItem('doneRecipes');
+    if (doneLocalStorage !== null) {
+      for (let i = 0; i < doneLocalStorage.length; i += 1) {
+        if (doneLocalStorage[i].id === idHistory) {
+          setPerformedRecipes(!performedRecipes);
+          break;
+        }
+      }
+    }
+  }
+
+  function inProgressRecipes() {
+    const inProgress = localStorage.getItem('inProgressRecipes');
+    if (inProgress !== null) {
+      for (let i = 0; i < inProgress.length; i += 1) {
+        const idDrink = (Object.keys(inProgress[i].cocktails));
+        if (idDrink === idHistory) {
+          setContinueRecipes(!continueRecipes);
+          break;
+        }
+      }
+    }
+  }
+
+  function clickCopy() {
+    copy(`http://localhost:3000${history.location.pathname}`);
+    setTextCopyLink(true);
+  }
+
+  function checkHeartBlack() {
+    const localFavorit = localStorage.getItem('favoriteRecipes');
+    if (localFavorit !== null) {
+      for (let i = 0; i < localFavorit.length; i += 1) {
+        if (localFavorit[i].id === idHistory) {
+          serFavoritBlackHeart(!favoritBlackHeart);
+          break;
+        }
+      }
+    }
+  }
+
+  function clickHeartBlack() {
+    serFavoritBlackHeart(!favoritBlackHeart);
+  }
   const contextType = {
     arrayId,
     functionPullId,
     arrayIngredients,
     arrayPatternDrink,
+    setPerformedRecipes,
+    performedRecipes,
+    doneRecipes,
+    inProgressRecipes,
+    clickCopy,
+    textCopyLink,
+    checkHeartBlack,
+    clickHeartBlack,
+    favoritBlackHeart,
   };
 
   return (
