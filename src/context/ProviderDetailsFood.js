@@ -19,6 +19,7 @@ function ProviderDetailsFood({ children }) {
   const [continueRecipes, setContinueRecipes] = useState(false);
   const [textCopyLink, setTextCopyLink] = useState(false);
   const [favoritBlackHeart, serFavoritBlackHeart] = useState(false);
+
   async function functionPullId() {
     try {
       const response = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${(history.location.pathname.split('/')[2])}`);
@@ -83,18 +84,41 @@ function ProviderDetailsFood({ children }) {
   }
 
   function checkHeartBlack() {
-    const localFavorit = localStorage.getItem('favoriteRecipes');
+    const localFavorit = JSON.parse(localStorage.getItem('favoriteRecipes'));
     if (localFavorit !== null) {
       for (let i = 0; i < localFavorit.length; i += 1) {
         if (localFavorit[i].id === idHistory) {
-          serFavoritBlackHeart(!favoritBlackHeart);
+          serFavoritBlackHeart(true);
           break;
         }
       }
     }
   }
 
+  function saveFavoriteProdut(favoriteProduto) {
+    localStorage.setItem('favoriteRecipes', JSON.stringify(favoriteProduto));
+  }
+
   function clickHeartBlack() {
+    const arrayFavorit = { id: arrayId[0].idMeal,
+      type: 'food',
+      nationality: arrayId[0].strArea,
+      category: arrayId[0].strCategory,
+      alcoholicOrNot: '',
+      name: arrayId[0].strMeal,
+      image: arrayId[0].strMealThumb };
+    if (favoritBlackHeart === false) {
+      if (localStorage.getItem('favoriteRecipes') !== JSON.stringify([])) {
+        const favorit = JSON.parse(localStorage.getItem('favoriteRecipes'));
+        saveFavoriteProdut([...favorit, arrayFavorit]);
+      } else {
+        saveFavoriteProdut([arrayFavorit]);
+      }
+    } else {
+      const favoritArray = JSON.parse(localStorage.getItem('favoriteRecipes'));
+      const newArray = favoritArray.filter((item) => (item.id !== idHistory));
+      saveFavoriteProdut(newArray);
+    }
     serFavoritBlackHeart(!favoritBlackHeart);
   }
   const contextType = {
@@ -108,8 +132,8 @@ function ProviderDetailsFood({ children }) {
     inProgressRecipes,
     clickCopy,
     textCopyLink,
-    checkHeartBlack,
     clickHeartBlack,
+    checkHeartBlack,
     favoritBlackHeart,
   };
 
