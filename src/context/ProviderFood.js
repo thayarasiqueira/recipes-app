@@ -36,7 +36,6 @@ function ProviderFood({ children }) {
     try {
       const response = await fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=');
       const data = await response.json();
-      console.log(data);
       setArrayPatternFood(data.meals.slice(0, TWELVE));
       setMealsFood(data.meals.slice(0, TWELVE));
     } catch (e) {
@@ -52,7 +51,6 @@ function ProviderFood({ children }) {
       try {
         const response = await fetch('https://www.themealdb.com/api/json/v1/1/list.php?c=list');
         const data = await response.json();
-        console.log(data);
         setCategoryApiFood(data.meals.slice(0, FIVE));
       } catch (e) {
         console.log(e);
