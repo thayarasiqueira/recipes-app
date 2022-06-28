@@ -56,8 +56,19 @@ function ProviderDrinks({ children }) {
     apiDrink();
   }
 
+  async function filterDrinksByIngredient(ingredient) {
+    try {
+      const URL = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${ingredient}`;
+      const response = await fetch(URL);
+      const { drinks } = await response.json();
+      setArrayPatternDrink(drinks.slice(0, TWELVE));
+      console.log(drinks);
+    } catch (error) {
+      console.log(error);
+    }
+  }
   const contextType = {
-
+    filterDrinks: async (ingredient) => filterDrinksByIngredient(ingredient),
     categoryApiDrink,
     arrayPatternDrink,
     handleButtonDrink,

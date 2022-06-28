@@ -11,12 +11,11 @@ function ProviderFood({ children }) {
   const [arrayPatternFood, setArrayPatternFood] = useState([]);
   const [nameLink, setNameLink] = useState('');
   const [pathFood, setPathFood] = useState('/foods');
-
   /* const ActualLocation = () => {
     const actualPath = useLocation();
     setPathFood(actualPath);
   };
- */
+  */
   async function apiFood() {
     try {
       const response = await fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=');
@@ -36,6 +35,7 @@ function ProviderFood({ children }) {
       try {
         const response = await fetch('https://www.themealdb.com/api/json/v1/1/list.php?c=list');
         const data = await response.json();
+        console.log(data);
         setCategoryApiFood(data.meals.slice(0, FIVE));
       } catch (e) {
         console.log(e);
@@ -63,6 +63,19 @@ function ProviderFood({ children }) {
     apiFood();
   }
 
+  async function filterFoodByIngredient(ingredient) {
+    try {
+      console.log(ingredient);
+      const URL = `https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}`;
+      const response = await fetch(URL);
+      const { meals } = await response.json();
+      setArrayPatternFood(meals.slice(0, TWELVE));
+      console.log(meals);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   const contextType = {
     categoryApiFood,
     arrayPatternFood,
@@ -70,6 +83,7 @@ function ProviderFood({ children }) {
     setPathFood,
     handlebuttonFood,
     allFunction,
+    filterFood: async (ingredient) => filterFoodByIngredient(ingredient),
   };
 
   return (
