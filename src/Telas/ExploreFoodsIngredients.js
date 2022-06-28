@@ -1,36 +1,52 @@
 import React, { useContext } from 'react';
+import PropTypes from 'prop-types';
 import ContextIngredients from '../context/ContextIngredients';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import ContextFood from '../context/ContextFood';
 
-function ExploreFoodsIngredients() {
+function ExploreFoodsIngredients({ history }) {
   const { ingredientsFood } = useContext(ContextIngredients);
+  const { filterFood } = useContext(ContextFood);
+  const historyAndFilterFood = async ({ target }) => {
+    console.log(target.name);
+    await filterFood(target.name);
+    history.push('/foods');
+  };
+
   const TWELVE = 12;
-  console.log(ingredientsFood);
   return (
     <div>
       <Header title="Explore Ingredients" />
       { ingredientsFood.slice(0, TWELVE).map(({ strIngredient: ingredient }, index) => {
         const URL = `https://www.themealdb.com/images/ingredients/${ingredient}-Small.png`;
         return (
-          <div
+          <button
+            type="button"
+            onClick={ historyAndFilterFood }
             data-testid={ `${index}-ingredient-card` }
             key={ index }
+            name={ ingredient }
           >
             <img
               src={ URL }
               alt={ `Imagem de:${ingredient}` }
               data-testid={ `${index}-card-img` }
+              name={ ingredient }
             />
-            <h2 data-testid={ `${index}-card-name` }>
+            <h2 data-testid={ `${index}-card-name` } name={ ingredient }>
               {ingredient}
             </h2>
-          </div>
+          </button>
         );
       })}
       <Footer />
     </div>
   );
 }
+
+ExploreFoodsIngredients.propTypes = {
+  history: PropTypes.objectOf(PropTypes.objectOf).isRequired,
+};
 
 export default ExploreFoodsIngredients;
