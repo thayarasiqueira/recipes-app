@@ -21,6 +21,7 @@ import ExploreDrinksIngredients from './Telas/ExploreDrinksIngredients';
 import ExploreFoodsNationalities from './Telas/ExploreFoodsNationalities';
 import DetailsFood from './Telas/DetailsFood';
 import NotFound from './components/NotFound';
+import IngredientProvider from './context/IngredientProvider';
 
 function App() {
   return (
@@ -40,7 +41,8 @@ function App() {
             <Route exact path="/explore" component={ Explore } />
             <Route exact path="/explore/foods" component={ ExploreFoods } />
             <Route exact path="/explore/drinks" component={ ExploreDrinks } />
-            <Route exact path="/foods/:id/in-progress" component={ InProgress } />
+            <Route exact path="/foods/:id/in-progress" component={ InProgressFoods } />
+            <Route exact path="/drinks/:id/in-progress" component={ InProgressDrinks } />
             <Route
               exact
               path="/explore/foods/ingredients"
