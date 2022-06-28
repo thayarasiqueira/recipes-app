@@ -18,7 +18,8 @@ function ProviderDetailsDrinks({ children }) {
   const [performedRecipes, setPerformedRecipes] = useState(false);
   const [continueRecipes, setContinueRecipes] = useState(false);
   const [textCopyLink, setTextCopyLink] = useState(false);
-  const [favoritBlackHeart, serFavoritBlackHeart] = useState(false);
+  const [favoritBlackHeart, setFavoritBlackHeart] = useState(false);
+
   async function functionPullId() {
     try {
       const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${(history.location.pathname.split('/')[2])}`);
@@ -89,17 +90,6 @@ function ProviderDetailsDrinks({ children }) {
     setTextCopyLink(true);
   }
 
-  function checkHeartBlack() {
-    const localFavorit = JSON.parse(localStorage.getItem('favoriteRecipes'));
-    if (localFavorit !== null) {
-      for (let i = 0; i < localFavorit.length; i += 1) {
-        if (localFavorit[i].id === idHistory) {
-          serFavoritBlackHeart(true);
-          break;
-        }
-      }
-    }
-  }
   function saveFavoriteProdut(favoriteProduto) {
     localStorage.setItem('favoriteRecipes', JSON.stringify(favoriteProduto));
   }
@@ -115,8 +105,6 @@ function ProviderDetailsDrinks({ children }) {
     if (favoritBlackHeart === false) {
       if (localStorage.getItem('favoriteRecipes') !== JSON.stringify([])) {
         const favorit = JSON.parse(localStorage.getItem('favoriteRecipes'));
-        console.log(arrayId);
-
         saveFavoriteProdut([...favorit, arrayFavorit]);
       } else {
         saveFavoriteProdut([arrayFavorit]);
@@ -126,7 +114,7 @@ function ProviderDetailsDrinks({ children }) {
       const newArray = favoritArray.filter((item) => (item.id !== idHistory));
       saveFavoriteProdut(newArray);
     }
-    serFavoritBlackHeart(!favoritBlackHeart);
+    setFavoritBlackHeart(!favoritBlackHeart);
   }
 
   const contextType = {
@@ -140,9 +128,10 @@ function ProviderDetailsDrinks({ children }) {
     inProgressRecipes,
     clickCopy,
     textCopyLink,
-    checkHeartBlack,
     clickHeartBlack,
+    setFavoritBlackHeart,
     favoritBlackHeart,
+
   };
 
   return (

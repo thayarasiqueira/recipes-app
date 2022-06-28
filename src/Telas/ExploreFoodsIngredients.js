@@ -9,7 +9,6 @@ function ExploreFoodsIngredients({ history }) {
   const { ingredientsFood } = useContext(ContextIngredients);
   const { filterFood } = useContext(ContextFood);
   const historyAndFilterFood = async ({ target }) => {
-    console.log(target.name);
     await filterFood(target.name);
     history.push('/foods');
   };

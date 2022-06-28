@@ -1,4 +1,5 @@
 import React, { useContext, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import Header from '../components/Header';
 import ContextIngredients from '../context/ContextIngredients';
 import share from '../images/shareIcon.svg';
@@ -7,8 +8,9 @@ import favoritImageBlackHeart from '../images/blackHeartIcon.svg';
 function FavoriteRecipes() {
   const { textCopyLink, clickCopy,
     checkHeartBlack, arrayFavorite,
-    setArrayFavorite } = useContext(ContextIngredients);
+    setArrayFavorite, filterRecive } = useContext(ContextIngredients);
   const localFavorit = JSON.parse(localStorage.getItem('favoriteRecipes'));
+  const history = useHistory();
   useEffect(() => {
     setArrayFavorite(localFavorit);
   }, []);
@@ -16,9 +18,30 @@ function FavoriteRecipes() {
     <main>
       <section>
         <Header title="Favorite Recipes" />
-        <button type="button" data-testid="filter-by-all-btn">All</button>
-        <button type="button" data-testid="filter-by-food-btn">Food</button>
-        <button type="button" data-testid="filter-by-drink-btn">Drinks</button>
+        <button
+          type="button"
+          onClick={ () => { filterRecive('All'); } }
+          data-testid="filter-by-all-btn"
+        >
+          All
+
+        </button>
+        <button
+          type="button"
+          onClick={ () => { filterRecive('food'); } }
+          data-testid="filter-by-food-btn"
+        >
+          Food
+
+        </button>
+        <button
+          type="button"
+          data-testid="filter-by-drink-btn"
+          onClick={ () => { filterRecive('drink'); } }
+        >
+          Drinks
+
+        </button>
       </section>
       <div>
         {
@@ -26,36 +49,45 @@ function FavoriteRecipes() {
             <div
               key={ index }
             >
-              <img
-                data-testid={ `${index}-horizontal-image` }
-                src={ item.image }
-                alt="ilustração"
-              />
-              {
-                item.type === 'food'
-                  ? (
-                    <div>
+              <button
+                type="button"
+                onClick={ () => {
+                  if (item.type === 'drink') { history.push(`/drinks/${item.id}`); }
+                  if (item.type === 'food') { history.push(`/foods/${item.id}`); }
+                } }
+              >
+                <img
+                  data-testid={ `${index}-horizontal-image` }
+                  src={ item.image }
+                  alt="ilustração"
+                  width="100px"
+                />
+                {
+                  item.type === 'food'
+                    ? (
+                      <div>
+                        <p
+                          data-testid={ `${index}-horizontal-top-text` }
+                        >
+                          {`${item.nationality} - ${item.category}`}
+                        </p>
+                      </div>
+                    )
+                    : (
                       <p
                         data-testid={ `${index}-horizontal-top-text` }
                       >
-                        {`${item.nationality} - ${item.category}`}
+                        {item.alcoholicOrNot}
                       </p>
-                    </div>
-                  )
-                  : (
-                    <p
-                      data-testid={ `${index}-horizontal-top-text` }
-                    >
-                      {item.alcoholicOrNot}
-                    </p>
-                  )
-              }
+                    )
+                }
 
-              <p
-                data-testid={ `${index}-horizontal-name` }
-              >
-                {item.name}
-              </p>
+                <p
+                  data-testid={ `${index}-horizontal-name` }
+                >
+                  {item.name}
+                </p>
+              </button>
               {
                 textCopyLink ? (<p>Link copied!</p>)
                   : (
@@ -81,6 +113,7 @@ function FavoriteRecipes() {
                   alt="Favoritar"
                 />
               </button>
+
             </div>
           ))
 

@@ -50,6 +50,21 @@ function IngredientProvider({ children }) {
     setArrayFavorite(JSON.parse(localStorage.getItem('favoriteRecipes')));
   }
 
+  function filterRecive(type) {
+    const favorites = JSON.parse(localStorage.getItem('favoriteRecipes'));
+    if (type === 'food') {
+      const arrayFood = favorites.filter((item) => (item.type === 'food'));
+      setArrayFavorite(arrayFood);
+    }
+    if (type === 'drink') {
+      const arrayDrink = favorites.filter((item) => (item.type === 'drink'));
+      setArrayFavorite(arrayDrink);
+    }
+    if (type === 'All') {
+      setArrayFavorite(favorites);
+    }
+  }
+
   const context = {
     textCopyLink,
     ingredientsFood,
@@ -58,6 +73,7 @@ function IngredientProvider({ children }) {
     checkHeartBlack,
     arrayFavorite,
     setArrayFavorite,
+    filterRecive,
   };
 
   return (
