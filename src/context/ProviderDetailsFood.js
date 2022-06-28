@@ -9,7 +9,7 @@ function ProviderDetailsFood({ children }) {
   // MagicNumber
   const TWENTY = 20;
   const SIX = 6;
-  // --------------------------------------------------------
+  // ------------------------------------------------------
   const history = useHistory();
   const idHistory = history.location.pathname.split('/')[2];
   const [arrayId, setArrayId] = useState([]);
