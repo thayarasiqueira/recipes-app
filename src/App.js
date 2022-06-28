@@ -20,47 +20,54 @@ import ExploreFoodsIngredients from './Telas/ExploreFoodsIngredients';
 import ExploreDrinksIngredients from './Telas/ExploreDrinksIngredients';
 import ExploreFoodsNationalities from './Telas/ExploreFoodsNationalities';
 import DetailsFood from './Telas/DetailsFood';
+import NotFound from './components/NotFound';
 
 function App() {
   return (
-    <ProviderDetailsFood>
-      <ProviderDetailsDrinks>
-        <Switch>
-          <Route exact path="/" component={ Login } />
-          <Route
-            exact
-            path="/foods/:id"
-            component={ DetailsFood }
-          />
-          <Route exact path="/foods" component={ Food } />
-          <Route exact path="/drinks/:id" component={ DetailsDrink } />
-          <Route exact path="/drinks" component={ Drinks } />
-          <Route exact path="/explore" component={ Explore } />
-          <Route exact path="/explore/foods" component={ ExploreFoods } />
-          <Route exact path="/explore/drinks" component={ ExploreDrinks } />
-          <Route exact path="/foods/:id/in-progress" component={ InProgressFoods } />
-          <Route exact path="/drinks/:id/in-progress" component={ InProgressDrinks } />
-          <Route
-            exact
-            path="/explore/foods/ingredients"
-            component={ ExploreFoodsIngredients }
-          />
-          <Route
-            exact
-            path="/explore/drinks/ingredients"
-            component={ ExploreDrinksIngredients }
-          />
-          <Route
-            exact
-            path="/explore/foods/nationalities"
-            component={ ExploreFoodsNationalities }
-          />
-          <Route exact path="/profile" component={ Profile } />
-          <Route exact path="/done-recipes" component={ DoneRecipes } />
-          <Route exact path="/favorite-recipes" component={ FavoriteRecipes } />
-        </Switch>
-      </ProviderDetailsDrinks>
-    </ProviderDetailsFood>
+    <IngredientProvider>
+      <ProviderDetailsFood>
+        <ProviderDetailsDrinks>
+          <Switch>
+            <Route exact path="/" component={ Login } />
+            <Route
+              exact
+              path="/foods/:id"
+              component={ DetailsFood }
+            />
+            <Route exact path="/foods" component={ Food } />
+            <Route exact path="/drinks/:id" component={ DetailsDrink } />
+            <Route exact path="/drinks" component={ Drinks } />
+            <Route exact path="/explore" component={ Explore } />
+            <Route exact path="/explore/foods" component={ ExploreFoods } />
+            <Route exact path="/explore/drinks" component={ ExploreDrinks } />
+            <Route exact path="/foods/:id/in-progress" component={ InProgress } />
+            <Route
+              exact
+              path="/explore/foods/ingredients"
+              component={ ExploreFoodsIngredients }
+            />
+            <Route
+              exact
+              path="/explore/drinks/ingredients"
+              component={ ExploreDrinksIngredients }
+            />
+            <Route
+              exact
+              path="/explore/foods/nationalities"
+              component={ ExploreFoodsNationalities }
+            />
+            <Route
+              exact
+              path="/explore/drinks/nationalities"
+              component={ NotFound }
+            />
+            <Route exact path="/profile" component={ Profile } />
+            <Route exact path="/done-recipes" component={ DoneRecipes } />
+            <Route exact path="/favorite-recipes" component={ FavoriteRecipes } />
+          </Switch>
+        </ProviderDetailsDrinks>
+      </ProviderDetailsFood>
+    </IngredientProvider>
   );
 }
 
