@@ -18,7 +18,7 @@ function ProviderDetailsFood({ children }) {
   const [performedRecipes, setPerformedRecipes] = useState(false);
   const [continueRecipes, setContinueRecipes] = useState(false);
   const [textCopyLink, setTextCopyLink] = useState(false);
-  const [favoritBlackHeart, serFavoritBlackHeart] = useState(false);
+  /*   const [favoritBlackHeart, setFavoritBlackHeart] = useState(false); */
 
   async function functionPullId() {
     try {
@@ -48,10 +48,6 @@ function ProviderDetailsFood({ children }) {
       console.log(e);
     }
   }
-
-  useEffect(() => {
-    apiDrink();
-  }, []);
 
   function doneRecipes() {
     const doneLocalStorage = localStorage.getItem('doneRecipes');
@@ -83,18 +79,6 @@ function ProviderDetailsFood({ children }) {
     setTextCopyLink(true);
   }
 
-  function checkHeartBlack() {
-    const localFavorit = JSON.parse(localStorage.getItem('favoriteRecipes'));
-    if (localFavorit !== null) {
-      for (let i = 0; i < localFavorit.length; i += 1) {
-        if (localFavorit[i].id === idHistory) {
-          serFavoritBlackHeart(true);
-          break;
-        }
-      }
-    }
-  }
-
   function saveFavoriteProdut(favoriteProduto) {
     localStorage.setItem('favoriteRecipes', JSON.stringify(favoriteProduto));
   }
@@ -119,8 +103,12 @@ function ProviderDetailsFood({ children }) {
       const newArray = favoritArray.filter((item) => (item.id !== idHistory));
       saveFavoriteProdut(newArray);
     }
-    serFavoritBlackHeart(!favoritBlackHeart);
+    setFavoritBlackHeart(!favoritBlackHeart);
   }
+
+  useEffect(() => {
+    apiDrink();
+  }, []);
   const contextType = {
     arrayId,
     functionPullId,
@@ -133,8 +121,6 @@ function ProviderDetailsFood({ children }) {
     clickCopy,
     textCopyLink,
     clickHeartBlack,
-    checkHeartBlack,
-    favoritBlackHeart,
   };
 
   return (

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import shareImage from '../images/shareIcon.svg';
 import favoritImageHeart from '../images/whiteHeartIcon.svg';
@@ -10,22 +10,32 @@ function DetailsFood() {
   const { arrayId, functionPullId,
     arrayIngredients, arrayPatternDrink,
     performedRecipes, doneRecipes,
-    inProgressRecipes, continueRecipes,
+    inProgressRecipes,
+    continueRecipes,
     clickCopy, textCopyLink,
-    favoritBlackHeart, checkHeartBlack,
     clickHeartBlack } = useContext(ContextDetailsFood);
 
+  const [favoritBlackHeart, setFavoritBlackHeart] = useState(false);
+  const history = useHistory();
+  const idHistory = history.location.pathname.split('/')[2];
+
+  function checkHeartBlack() {
+    const localFavorit = JSON.parse(localStorage.getItem('favoriteRecipes'));
+    if (localFavorit !== null) {
+      const ifTrue = localFavorit.some((item) => (item.id === idHistory));
+      setFavoritBlackHeart(ifTrue);
+    }
+  }
+
   useEffect(() => {
+    checkHeartBlack();
     functionPullId();
     doneRecipes();
     inProgressRecipes();
-    checkHeartBlack();
     if (!JSON.parse(localStorage.getItem('favoriteRecipes'))) {
       localStorage.setItem('favoriteRecipes', JSON.stringify([]));
     }
   }, []);
-  const history = useHistory();
-
   const buttonContinue = (
     <button
       data-testid="start-recipe-btn"

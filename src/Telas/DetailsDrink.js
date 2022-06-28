@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import shareImage from '../images/shareIcon.svg';
 import ContextDetailsDrinks from '../context/DetailsDrinks/ContextDetailsDrinks';
@@ -13,17 +13,27 @@ function DetailsDrink() {
     performedRecipes,
     continueRecipes, doneRecipes,
     inProgressRecipes, clickCopy,
-    textCopyLink, favoritBlackHeart,
-    checkHeartBlack, clickHeartBlack } = useContext(ContextDetailsDrinks);
+    textCopyLink, clickHeartBlack } = useContext(ContextDetailsDrinks);
+
+  const [favoritBlackHeart, setFavoritBlackHeart] = useState(false);
+  const idHistory = history.location.pathname.split('/')[2];
+
+  function checkHeartBlack() {
+    const localFavorit = JSON.parse(localStorage.getItem('favoriteRecipes'));
+    if (localFavorit !== null) {
+      const ifTrue = localFavorit.some((item) => (item.id === idHistory));
+      setFavoritBlackHeart(ifTrue);
+    }
+  }
 
   useEffect(() => {
     functionPullId();
     inProgressRecipes();
     doneRecipes();
-    checkHeartBlack();
     if (!JSON.parse(localStorage.getItem('favoriteRecipes'))) {
       localStorage.setItem('favoriteRecipes', JSON.stringify([]));
     }
+    checkHeartBlack();
   }, []);
   const buttonContinue = (
     <button
