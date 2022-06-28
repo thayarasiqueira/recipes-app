@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import shareImage from '../images/shareIcon.svg';
 import favoritImageHeart from '../images/whiteHeartIcon.svg';
@@ -13,9 +13,9 @@ function DetailsFood() {
     inProgressRecipes,
     continueRecipes,
     clickCopy, textCopyLink,
-    clickHeartBlack } = useContext(ContextDetailsFood);
+    clickHeartBlack, setFavoritBlackHeart,
+    favoritBlackHeart } = useContext(ContextDetailsFood);
 
-  const [favoritBlackHeart, setFavoritBlackHeart] = useState(false);
   const history = useHistory();
   const idHistory = history.location.pathname.split('/')[2];
 

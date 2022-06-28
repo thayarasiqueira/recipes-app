@@ -18,7 +18,7 @@ function ProviderDetailsFood({ children }) {
   const [performedRecipes, setPerformedRecipes] = useState(false);
   const [continueRecipes, setContinueRecipes] = useState(false);
   const [textCopyLink, setTextCopyLink] = useState(false);
-  /*   const [favoritBlackHeart, setFavoritBlackHeart] = useState(false); */
+  const [favoritBlackHeart, setFavoritBlackHeart] = useState(false);
 
   async function functionPullId() {
     try {
@@ -121,6 +121,8 @@ function ProviderDetailsFood({ children }) {
     clickCopy,
     textCopyLink,
     clickHeartBlack,
+    favoritBlackHeart,
+    setFavoritBlackHeart,
   };
 
   return (

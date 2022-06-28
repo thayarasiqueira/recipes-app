@@ -18,6 +18,8 @@ function ProviderDetailsDrinks({ children }) {
   const [performedRecipes, setPerformedRecipes] = useState(false);
   const [continueRecipes, setContinueRecipes] = useState(false);
   const [textCopyLink, setTextCopyLink] = useState(false);
+  const [favoritBlackHeart, setFavoritBlackHeart] = useState(false);
+
   async function functionPullId() {
     try {
       const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${(history.location.pathname.split('/')[2])}`);
@@ -112,7 +114,7 @@ function ProviderDetailsDrinks({ children }) {
       const newArray = favoritArray.filter((item) => (item.id !== idHistory));
       saveFavoriteProdut(newArray);
     }
-    serFavoritBlackHeart(!favoritBlackHeart);
+    setFavoritBlackHeart(!favoritBlackHeart);
   }
 
   const contextType = {
@@ -127,6 +129,9 @@ function ProviderDetailsDrinks({ children }) {
     clickCopy,
     textCopyLink,
     clickHeartBlack,
+    setFavoritBlackHeart,
+    favoritBlackHeart,
+
   };
 
   return (
