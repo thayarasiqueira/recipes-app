@@ -10,6 +10,7 @@ function ProviderFood({ children }) {
   const FIVE = 5;
   const [categoryApiFood, setCategoryApiFood] = useState([]);
   const [arrayPatternFood, setArrayPatternFood] = useState([]);
+  const [mealsFood, setMealsFood] = useState([]);
   const [nameLink, setNameLink] = useState('');
   const [pathFood, setPathFood] = useState('/foods');
   const [filterSearch, setFilterSearch] = useState('');
@@ -37,6 +38,7 @@ function ProviderFood({ children }) {
       const data = await response.json();
       console.log(data);
       setArrayPatternFood(data.meals.slice(0, TWELVE));
+      setMealsFood(data.meals.slice(0, TWELVE));
     } catch (e) {
       console.log(e);
     }
@@ -177,6 +179,7 @@ function ProviderFood({ children }) {
     handleFilterSearch,
     handleSearch,
     setSelect,
+    mealsFood,
   };
 
   return (

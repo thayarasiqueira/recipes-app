@@ -20,6 +20,7 @@ import ExploreFoodsIngredients from './Telas/ExploreFoodsIngredients';
 import ExploreDrinksIngredients from './Telas/ExploreDrinksIngredients';
 import ExploreFoodsNationalities from './Telas/ExploreFoodsNationalities';
 import DetailsFood from './Telas/DetailsFood';
+import NotFound from './components/NotFound';
 
 function App() {
   return (
@@ -54,6 +55,11 @@ function App() {
               exact
               path="/explore/foods/nationalities"
               component={ ExploreFoodsNationalities }
+            />
+            <Route
+              exact
+              path="/explore/drinks/nationalities"
+              component={ NotFound }
             />
             <Route exact path="/profile" component={ Profile } />
             <Route exact path="/done-recipes" component={ DoneRecipes } />
