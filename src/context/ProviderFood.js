@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 // import { useLocation } from 'react-router-dom';
 import ContextFood from './ContextFood';
 
+const alertMsg = 'Sorry, we haven\'t found any recipes for these filters.';
 function ProviderFood({ children }) {
   // MagicNumbers
   const TWELVE = 12;
@@ -11,11 +12,25 @@ function ProviderFood({ children }) {
   const [arrayPatternFood, setArrayPatternFood] = useState([]);
   const [nameLink, setNameLink] = useState('');
   const [pathFood, setPathFood] = useState('/foods');
+  const [filterSearch, setFilterSearch] = useState('');
+  const [filteredResults, setFilteredResults] = useState([]);
+  const [search, setSearch] = useState('');
+  const [select, setSelect] = useState(false);
   /* const ActualLocation = () => {
     const actualPath = useLocation();
     setPathFood(actualPath);
   };
   */
+  useEffect(() => {
+    switch (filteredResults) {
+    case null:
+      global.alert('Sorry, we haven\'t found any recipes for these filters.');
+      break;
+    default:
+      console.log('searching...');
+    }
+  }, [filteredResults]);
+
   async function apiFood() {
     try {
       const response = await fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=');
@@ -59,6 +74,76 @@ function ProviderFood({ children }) {
     setNameLink(name);
   }
 
+  function handleChange({ target }) {
+    setFilterSearch(target.value);
+  }
+
+  function handleSearch({ target }) {
+    setSearch(target.value);
+  }
+
+  async function searchByFirstLetter(firstletter) {
+    try {
+      if (select === true) {
+        const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${firstletter}`);
+        const data = await response.json();
+        setFilteredResults(data.drinks.slice(0, TWELVE));
+      } else {
+        const response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?f=${firstletter}`);
+        const data = await response.json();
+        setFilteredResults(data.meals.slice(0, TWELVE));
+      }
+    } catch (e) {
+      global.alert(alertMsg);
+    }
+  }
+
+  async function searchByName(name) {
+    try {
+      if (select === true) {
+        const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${name}`);
+        const data = await response.json();
+        setFilteredResults(data.drinks.slice(0, TWELVE));
+      } else {
+        const response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${name}`);
+        const data = await response.json();
+        console.log(data.meals);
+        setFilteredResults(data.meals.slice(0, TWELVE));
+      }
+    } catch (e) {
+      global.alert(alertMsg);
+    }
+  }
+
+  async function searchByIngredient(ingredient) {
+    try {
+      if (select === true) {
+        const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${ingredient}`);
+        const data = await response.json();
+        setFilteredResults(data.drinks.slice(0, TWELVE));
+      } else {
+        const response = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}`);
+        const data = await response.json();
+        setFilteredResults(data.meals.slice(0, TWELVE));
+      }
+    } catch (e) {
+      global.alert(alertMsg);
+    }
+  }
+
+  function handleFilterSearch() {
+    if (filterSearch === 'First Letter' && search.length === 1) {
+      searchByFirstLetter(search);
+    } else if (filterSearch === 'First Letter' && search.length !== 1) {
+      global.alert('Your search must have only 1 (one) character');
+    } else if (filterSearch === 'Ingredient') {
+      searchByIngredient(search);
+    } else if (filterSearch === 'Name') {
+      searchByName(search);
+    } else {
+      console.log('erro');
+    }
+  }
   async function allFunction() {
     apiFood();
   }
@@ -80,10 +165,18 @@ function ProviderFood({ children }) {
     categoryApiFood,
     arrayPatternFood,
     pathFood,
+    filterSearch,
+    filteredResults,
+    select,
+    search,
     setPathFood,
     handlebuttonFood,
     allFunction,
     filterFood: async (ingredient) => filterFoodByIngredient(ingredient),
+    handleChange,
+    handleFilterSearch,
+    handleSearch,
+    setSelect,
   };
 
   return (

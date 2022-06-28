@@ -3,6 +3,8 @@ import { useHistory } from 'react-router-dom';
 import shareImage from '../images/shareIcon.svg';
 import ContextDetailsDrinks from '../context/DetailsDrinks/ContextDetailsDrinks';
 import '../DetailsCss/details.css';
+import favoritImageHeart from '../images/whiteHeartIcon.svg';
+import favoritImageBlackHeart from '../images/blackHeartIcon.svg';
 
 function DetailsDrink() {
   const history = useHistory();
@@ -11,12 +13,17 @@ function DetailsDrink() {
     performedRecipes,
     continueRecipes, doneRecipes,
     inProgressRecipes, clickCopy,
-    textCopyLink } = useContext(ContextDetailsDrinks);
+    textCopyLink, favoritBlackHeart,
+    checkHeartBlack, clickHeartBlack } = useContext(ContextDetailsDrinks);
 
   useEffect(() => {
     functionPullId();
     inProgressRecipes();
     doneRecipes();
+    checkHeartBlack();
+    if (!JSON.parse(localStorage.getItem('favoriteRecipes'))) {
+      localStorage.setItem('favoriteRecipes', JSON.stringify([]));
+    }
   }, []);
   const buttonContinue = (
     <button
@@ -83,10 +90,14 @@ function DetailsDrink() {
                 : buttonShare
             }
             <button
-              data-testid="favorite-btn"
               type="button"
+              onClick={ () => { clickHeartBlack(); } }
             >
-              Favoritar
+              <img
+                data-testid="favorite-btn"
+                src={ favoritBlackHeart ? favoritImageBlackHeart : favoritImageHeart }
+                alt="Favorit"
+              />
             </button>
             <h3
               data-testid="recipe-category"

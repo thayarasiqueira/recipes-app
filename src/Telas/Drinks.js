@@ -1,22 +1,36 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { useLocation } from 'react-router-dom';
 import Footer from '../components/Footer';
 import ContextDrinks from '../context/ContextDrinks';
 import CardDrink from '../components/CardDrink';
 import Header from '../components/Header';
+import ContextFood from '../context/ContextFood';
 
-function Drinks() {
+function Drinks({ history }) {
   const {
     categoryApiDrink,
     arrayPatternDrink,
     handleButtonDrink,
     allFunction } = useContext(ContextDrinks);
 
+  const { setSelect, filteredResults } = useContext(ContextFood);
+
+  useEffect(() => {
+    setSelect(true);
+  });
+
+  useEffect(() => {
+    if (filteredResults.length === 1) {
+      history.push(`/drinks/${filteredResults[0].idDrink}`);
+    }
+  }, [filteredResults]);
+
   const actualLocationDrinks = useLocation();
   return (
     <div>
       <div>
-        <Header title="Drinks" enableBtn />
+        <Header title="Drinks" enableBtn select />
         {
           categoryApiDrink.map((item, index) => (
             <button
@@ -42,6 +56,21 @@ function Drinks() {
         </button>
       </div>
       <div>
+        {
+          filteredResults.map((e, i) => (
+            <div
+              key={ i }
+            >
+              <CardDrink
+                nameReceita={ e.strDrink }
+                imageReceita={ e.strDrinkThumb }
+                indexReceita={ i }
+                idReceita={ e.idDrink }
+              />
+            </div>
+          ))
+
+        }
 
         {
           arrayPatternDrink.map((item, index) => (
@@ -65,5 +94,9 @@ function Drinks() {
 
   );
 }
+
+Drinks.propTypes = {
+  history: PropTypes.objectOf(PropTypes.objectOf).isRequired,
+};
 
 export default Drinks;

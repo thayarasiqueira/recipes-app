@@ -20,6 +20,9 @@ function DetailsFood() {
     doneRecipes();
     inProgressRecipes();
     checkHeartBlack();
+    if (!JSON.parse(localStorage.getItem('favoriteRecipes'))) {
+      localStorage.setItem('favoriteRecipes', JSON.stringify([]));
+    }
   }, []);
   const history = useHistory();
 
@@ -92,11 +95,11 @@ function DetailsFood() {
             }
 
             <button
-              data-testid="favorite-btn"
               type="button"
               onClick={ () => { clickHeartBlack(); } }
             >
               <img
+                data-testid="favorite-btn"
                 src={ favoritBlackHeart ? favoritImageBlackHeart : favoritImageHeart }
                 alt="Favorit"
               />
