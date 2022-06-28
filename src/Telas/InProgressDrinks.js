@@ -78,7 +78,16 @@ function InProgressDrinks() {
                     data-testid={ `${numbers}-ingredient-step` }
                     key={ numbers }
                   >
-                    {`- ${elemento.ingredients} - ${elemento.measure}`}
+                    <input
+                      id={ numbers }
+                      type="checkbox"
+                      name={ ` ${elemento.ingredients} - ${elemento.measure}` }
+                      value={ ` ${elemento.ingredients} - ${elemento.measure}` }
+                    />
+                    <label htmlFor={ numbers }>
+                      { ` ${elemento.ingredients} - ${elemento.measure}` }
+
+                    </label>
                   </div>
                 ))
               }
