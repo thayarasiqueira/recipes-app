@@ -1,4 +1,5 @@
 import React, { useContext, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import shareImage from '../images/shareIcon.svg';
 import favoritImageHeart from '../images/whiteHeartIcon.svg';
 import favoritImageBlackHeart from '../images/blackHeartIcon.svg';
@@ -17,6 +18,9 @@ function InProgressFoods() {
     doneRecipes();
     inProgressRecipes();
     checkHeartBlack();
+    if (!JSON.parse(localStorage.getItem('favoriteRecipes'))) {
+      localStorage.setItem('favoriteRecipes', JSON.stringify([]));
+    }
   }, []);
 
   const buttonShare = (
@@ -101,9 +105,11 @@ function InProgressFoods() {
               {item.strInstructions}
             </div>
             <div>
-              <button data-testid="finish-recipe-btn" type="button">
-                Finish Recipe
-              </button>
+              <Link to="/done-recipes">
+                <button data-testid="finish-recipe-btn" type="button">
+                  Finish Recipe
+                </button>
+              </Link>
             </div>
           </div>
         ))
