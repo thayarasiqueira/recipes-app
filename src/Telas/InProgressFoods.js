@@ -42,7 +42,7 @@ function InProgressFoods() {
             <img
               data-testid="recipe-photo"
               src={ item.strMealThumb }
-              alt="ilustração"
+              alt={ item.strMeal }
             />
             <h1
               data-testid="recipe-title"
@@ -58,13 +58,13 @@ function InProgressFoods() {
             }
 
             <button
+              data-testid="favorite-btn"
               type="button"
               onClick={ () => { clickHeartBlack(); } }
             >
               <img
-                data-testid="favorite-btn"
                 src={ favoritBlackHeart ? favoritImageBlackHeart : favoritImageHeart }
-                alt="Favorit"
+                alt="Favorite"
               />
             </button>
             <h3
@@ -77,7 +77,7 @@ function InProgressFoods() {
               {
                 arrayIngredients.map((elemento, numbers) => (
                   <div
-                    data-testid={ `${numbers}-ingredient-name-and-measure` }
+                    data-testid={ `${numbers}-ingredient-step` }
                     key={ numbers }
                   >
                     {`- ${elemento.ingredients} - ${elemento.measure}`}
@@ -90,6 +90,11 @@ function InProgressFoods() {
             >
               <h5>Instructions</h5>
               {item.strInstructions}
+            </div>
+            <div>
+              <button data-testid="finish-recipe-btn" type="button">
+                Finish Recipe
+              </button>
             </div>
           </div>
         ))

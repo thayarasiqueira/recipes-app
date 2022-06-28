@@ -75,7 +75,7 @@ function InProgressDrinks() {
               {
                 arrayIngredients.map((elemento, numbers) => (
                   <div
-                    data-testid={ `${numbers}-ingredient-name-and-measure` }
+                    data-testid={ `${numbers}-ingredient-step` }
                     key={ numbers }
                   >
                     {`- ${elemento.ingredients} - ${elemento.measure}`}
@@ -88,6 +88,11 @@ function InProgressDrinks() {
             >
               <h5>Instructions</h5>
               {item.strInstructions}
+            </div>
+            <div>
+              <button data-testid="finish-recipe-btn" type="button">
+                Finish Recipe
+              </button>
             </div>
           </div>
         ))

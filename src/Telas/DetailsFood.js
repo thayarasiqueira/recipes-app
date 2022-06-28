@@ -16,7 +16,6 @@ function DetailsFood() {
     clickHeartBlack } = useContext(ContextDetailsFood);
 
   useEffect(() => {
-    console.log(arrayId);
     functionPullId();
     doneRecipes();
     inProgressRecipes();
