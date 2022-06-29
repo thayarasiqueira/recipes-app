@@ -13,7 +13,15 @@ function InProgressDrinks() {
     doneRecipes,
     inProgressRecipes, clickCopy,
     textCopyLink, favoritBlackHeart,
-    checkHeartBlack, clickHeartBlack } = useContext(ContextDetailsDrinks);
+    clickHeartBlack, setFavoritBlackHeart } = useContext(ContextDetailsDrinks);
+
+  function checkHeartBlack() {
+    const localFavorit = JSON.parse(localStorage.getItem('favoriteRecipes'));
+    if (localFavorit !== null) {
+      const ifTrue = localFavorit.some((item) => (item.id === idHistory));
+      setFavoritBlackHeart(ifTrue);
+    }
+  }
 
   useEffect(() => {
     functionPullId();

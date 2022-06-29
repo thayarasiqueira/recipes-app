@@ -11,7 +11,7 @@ function HeaderSearch() {
           id="ingredient"
           data-testid="ingredient-search-radio"
           value="Ingredient"
-          name="Ingredient"
+          name="radio"
           onClick={ handleChange }
         />
         Ingredient
@@ -23,7 +23,7 @@ function HeaderSearch() {
           data-testid="name-search-radio"
           onClick={ handleChange }
           value="Name"
-          name="Name"
+          name="radio"
         />
         Name
       </label>
@@ -34,7 +34,7 @@ function HeaderSearch() {
           data-testid="first-letter-search-radio"
           onClick={ handleChange }
           value="First Letter"
-          name="First Letter"
+          name="radio"
         />
         First letter
       </label>
