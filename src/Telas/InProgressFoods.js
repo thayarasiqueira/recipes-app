@@ -10,14 +10,22 @@ function InProgressFoods() {
     arrayIngredients, doneRecipes,
     inProgressRecipes,
     clickCopy, textCopyLink,
-    favoritBlackHeart, checkHeartBlack,
-    clickHeartBlack } = useContext(ContextDetailsFood);
+    favoritBlackHeart,
+    clickHeartBlack, setFavoritBlackHeart } = useContext(ContextDetailsFood);
+
+  function checkHeartBlack() {
+    const localFavorit = JSON.parse(localStorage.getItem('favoriteRecipes'));
+    if (localFavorit !== null) {
+      const ifTrue = localFavorit.some((item) => (item.id === idHistory));
+      setFavoritBlackHeart(ifTrue);
+    }
+  }
 
   useEffect(() => {
     functionPullId();
+    checkHeartBlack();
     doneRecipes();
     inProgressRecipes();
-    checkHeartBlack();
     if (!JSON.parse(localStorage.getItem('favoriteRecipes'))) {
       localStorage.setItem('favoriteRecipes', JSON.stringify([]));
     }
