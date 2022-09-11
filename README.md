@@ -1,16 +1,34 @@
-# 🚧 README em construção 🚧
+# Recipes app
 
-<!-- Olá, Tryber!
+This group project brings a recipe app capable of viewing, searching, filtering, favoriting and tracking the progress of food and drink preparation.
 
-Esse é apenas um arquivo inicial para o README do seu projeto.
+The APIs used are the following:
+- TheMealDB (https://www.themealdb.com/)
+- CockTailDB (https://www.thecocktaildb.com/)
 
-É essencial que você preencha esse documento por conta própria, ok?
+The layout is focused on mobile devices, so all prototypes were developed for smaller screens.
 
-Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua criatividade brilhar!
+## Installation
 
-⚠️ IMPORTANTE: você precisa deixar nítido:
-- quais arquivos/pastas foram desenvolvidos por você; 
-- quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
-- quais arquivos/pastas foram desenvolvidos pela Trybe.
+Use the package manager [npm] to install all dependencies.
 
--->
+```bash
+npm install
+```
+
+## Usage
+
+In the project directory, you can run:
+
+```
+npm start
+```
+Runs the app in the development mode.
+Open http://localhost:3000 to view it in your browser.
+
+The page will reload when you make changes.
+You may also see any lint errors in the console.
+
+## Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
