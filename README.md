@@ -8,6 +8,8 @@ The APIs used are the following:
 
 The layout is focused on mobile devices, so all prototypes were developed for smaller screens.
 
+Contribuitors: kadu3611, hektho
+
 ## Installation
 
 Use the package manager [npm] to install all dependencies.
