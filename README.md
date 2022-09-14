@@ -8,7 +8,11 @@ The APIs used are the following:
 
 The layout is focused on mobile devices, so all prototypes were developed for smaller screens.
 
+The group organized itself through the Kanban method, using Trello to allow all team members visualizing and changing each state of each demmand. 
 Contribuitors: kadu3611, hektho, IsaacFranzen
+
+Prototype:
+https://www.figma.com/file/cBDVGdqQxUuVlQp3ehW7wx/Recipes-App
 
 ## Installation
 
