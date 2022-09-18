@@ -2,7 +2,6 @@ import React, { useContext, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import shareImage from '../images/shareIcon.svg';
 import ContextDetailsDrinks from '../context/DetailsDrinks/ContextDetailsDrinks';
-import '../DetailsCss/details.css';
 import favoritImageHeart from '../images/whiteHeartIcon.svg';
 import favoritImageBlackHeart from '../images/blackHeartIcon.svg';
 
@@ -51,9 +50,9 @@ function DetailsDrink() {
 
   const buttonStart = (
     <button
+      className="btn-start-recipe"
       data-testid="start-recipe-btn"
       type="button"
-      className="button-details"
       disabled={ performedRecipes }
       onClick={ () => {
         history.push(`/drinks/${history.location.pathname.split('/')[2]}/in-progress`);
@@ -78,13 +77,14 @@ function DetailsDrink() {
     </button>
   );
   return (
-    <div>
+    <div className="container-details">
       {
         arrayId.map((item, index) => (
           <div
             key={ index }
           >
             <img
+              className="img-detail"
               data-testid="recipe-photo"
               src={ item.strDrinkThumb }
               alt="ilustração"
@@ -130,18 +130,18 @@ function DetailsDrink() {
             <div
               data-testid="instructions"
             >
-              <h5>Instructions</h5>
+              <h4>Instructions</h4>
               {item.strInstructions}
             </div>
             <div>
-              <h6> Recommended </h6>
               <div
-                className="recomended"
+                className="recommended"
               >
+                <h5> Recommended </h5>
                 {
                   arrayPatternFood.map((food, amount) => (
                     <div
-                      className="card-recomended"
+                      className="card-recommended"
                       data-testid={ `${amount}-recomendation-card` }
                       key={ amount }
                     >
@@ -157,13 +157,13 @@ function DetailsDrink() {
                         {food.strCategory}
 
                       </p>
-                      <h1
+                      <h6
                         data-testid={ `${amount}-recomendation-title` }
                         className="card-name"
                       >
                         {food.strMeal}
 
-                      </h1>
+                      </h6>
                     </div>
                   ))
                 }

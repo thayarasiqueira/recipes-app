@@ -4,7 +4,6 @@ import shareImage from '../images/shareIcon.svg';
 import favoritImageHeart from '../images/whiteHeartIcon.svg';
 import favoritImageBlackHeart from '../images/blackHeartIcon.svg';
 import ContextDetailsFood from '../context/ContextDetailsFood';
-import '../DetailsCss/details.css';
 
 function DetailsFood() {
   const { arrayId, functionPullId,
@@ -52,9 +51,8 @@ function DetailsFood() {
 
   const buttonStart = (
     <button
-      data-testid="start-recipe-btn"
       type="button"
-      className="button-details"
+      className="btn-start-recipe"
       disabled={ performedRecipes }
       onClick={ () => {
         history.push(`/foods/${history.location.pathname.split('/')[2]}/in-progress`);
@@ -80,13 +78,14 @@ function DetailsFood() {
   );
 
   return (
-    <div>
+    <div className="container-details">
       {
         arrayId.map((item, index) => (
           <div
             key={ index }
           >
             <img
+              className="img-detail"
               data-testid="recipe-photo"
               src={ item.strMealThumb }
               alt="ilustração"
@@ -135,11 +134,10 @@ function DetailsFood() {
             <div
               data-testid="instructions"
             >
-              <h5>Instructions</h5>
+              <h4>Instructions</h4>
               {item.strInstructions}
             </div>
             <div>
-              <h6>Vídeo</h6>
               <iframe
                 data-testid="video"
                 width="240"
@@ -151,16 +149,16 @@ function DetailsFood() {
               gyroscope; picture-in-picture"
                 allowFullScreen
               />
-              <h6>
-                Recommended
-              </h6>
               <div
-                className="recomended"
+                className="recommended"
               >
+                <h5>
+                  Recommended
+                </h5>
                 {
                   arrayPatternDrink.map((drink, amount) => (
                     <div
-                      className="card-recomended"
+                      className="card-recommended"
                       data-testid={ `${amount}-recomendation-card` }
                       key={ amount }
                     >
@@ -176,13 +174,13 @@ function DetailsFood() {
                         {drink.strAlcoholic}
 
                       </p>
-                      <h1
+                      <h6
                         data-testid={ `${amount}-recomendation-title` }
                         className="card-name"
                       >
                         {drink.strDrink}
 
-                      </h1>
+                      </h6>
                     </div>
                   ))
                 }
