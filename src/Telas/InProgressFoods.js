@@ -45,13 +45,14 @@ function InProgressFoods() {
   );
 
   return (
-    <div>
+    <div className="container-details">
       {
         arrayId.map((item, index) => (
           <div
             key={ index }
           >
             <img
+              className="img-detail"
               data-testid="recipe-photo"
               src={ item.strMealThumb }
               alt={ item.strMeal }
@@ -114,7 +115,7 @@ function InProgressFoods() {
             </div>
             <div>
               <Link to="/done-recipes">
-                <button data-testid="finish-recipe-btn" type="button">
+                <button className="btn" data-testid="finish-recipe-btn" type="button">
                   Finish Recipe
                 </button>
               </Link>
