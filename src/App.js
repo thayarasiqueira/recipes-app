@@ -22,6 +22,7 @@ import ExploreFoodsNationalities from './Telas/ExploreFoodsNationalities';
 import DetailsFood from './Telas/DetailsFood';
 import NotFound from './components/NotFound';
 import IngredientProvider from './context/IngredientProvider';
+import './App.css';
 
 function App() {
   return (

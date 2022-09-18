@@ -1,6 +1,8 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import LoginContext from '../context/LoginContext';
+import '../Login.css';
+import logoIcon from '../images/logoIcon.svg';
 
 function Login() {
   const {
@@ -10,7 +12,7 @@ function Login() {
     handlechangePassword,
     disabled } = useContext(LoginContext);
   return (
-    <div>
+    <div className="container-login">
       <form>
         <input
           type="email"
@@ -25,18 +27,19 @@ function Login() {
           data-testid="password-input"
           onChange={ handlechangePassword }
         />
-        <Link to="/foods">
-          <button
-            type="button"
-            disabled={ disabled }
-            data-testid="login-submit-btn"
-            onClick={ saveEmailStorage }
-          >
-            Login
-
-          </button>
-        </Link>
       </form>
+      <Link to="/foods">
+        <button
+          type="button"
+          disabled={ disabled }
+          data-testid="login-submit-btn"
+          onClick={ saveEmailStorage }
+        >
+          Login
+
+        </button>
+      </Link>
+      <img src={ logoIcon } alt="logo food hunter" />
     </div>
 
   );
