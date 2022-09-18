@@ -8,20 +8,24 @@ export default function ExploreDrinks({ history }) {
   return (
     <div>
       <Header title="Explore Drinks" />
-      <button
-        type="button"
-        data-testid="explore-by-ingredient"
-        onClick={ () => history.push('/explore/drinks/ingredients') }
-      >
-        By Ingredient
-      </button>
-      <button
-        type="button"
-        data-testid="explore-surprise"
-        onClick={ async () => history.push(`/drinks/${await surpriseMeDrinks()}`) }
-      >
-        Surprise me!
-      </button>
+      <div className="container-btns">
+        <button
+          className="btn"
+          type="button"
+          data-testid="explore-by-ingredient"
+          onClick={ () => history.push('/explore/drinks/ingredients') }
+        >
+          By Ingredient
+        </button>
+        <button
+          className="btn"
+          type="button"
+          data-testid="explore-surprise"
+          onClick={ async () => history.push(`/drinks/${await surpriseMeDrinks()}`) }
+        >
+          Surprise me!
+        </button>
+      </div>
       <Footer />
     </div>
   );

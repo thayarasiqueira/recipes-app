@@ -18,31 +18,35 @@ function ExploreDrinksIngredients({ history }) {
   return (
     <main>
       <Header title="Explore Ingredients" />
-      {ingredientsDrinks.slice(0, TWELVE).map(({ strIngredient1: ingredient }, index) => {
-        const URLIMG = `https://www.thecocktaildb.com/images/ingredients/${ingredient}-Small.png`;
-        return (
-          <button
-            onClick={ historyAndFilterDrinks }
-            type="button"
-            data-testid={ `${index}-ingredient-card` }
-            key={ index }
-            name={ ingredient }
-          >
-            <img
-              src={ URLIMG }
-              alt={ `Imagem de: ${ingredient}` }
-              data-testid={ `${index}-card-img` }
-              name={ ingredient }
-            />
-            <h2
-              data-testid={ `${index}-card-name` }
-              name={ ingredient }
-            >
-              { ingredient }
-            </h2>
-          </button>
-        );
-      })}
+      <div className="recommended">
+        {ingredientsDrinks.slice(0, TWELVE).map(
+          ({ strIngredient1: ingredient }, index) => {
+            const URLIMG = `https://www.thecocktaildb.com/images/ingredients/${ingredient}-Small.png`;
+            return (
+              <button
+                onClick={ historyAndFilterDrinks }
+                type="button"
+                data-testid={ `${index}-ingredient-card` }
+                key={ index }
+                name={ ingredient }
+              >
+                <img
+                  src={ URLIMG }
+                  alt={ `Imagem de: ${ingredient}` }
+                  data-testid={ `${index}-card-img` }
+                  name={ ingredient }
+                />
+                <h2
+                  data-testid={ `${index}-card-name` }
+                  name={ ingredient }
+                >
+                  { ingredient }
+                </h2>
+              </button>
+            );
+          },
+        )}
+      </div>
       <Footer />
     </main>
   );

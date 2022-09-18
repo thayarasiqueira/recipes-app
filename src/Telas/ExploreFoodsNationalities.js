@@ -37,31 +37,33 @@ function ExploreFoodsNationalities() {
   };
   return (
     <div>
-      <Header title="Explore Nationalities" enableBtn />
-      <select
-        data-testid="explore-by-nationality-dropdown"
-        onClick={ filterByNationality }
-      >
-        <option data-testid="All-option"> All </option>
-        { nationalities.map(({ strArea }, index) => (
-          <option
-            data-testid={ `${strArea}-option` }
-            key={ index }
-          >
-            { strArea }
-          </option>
+      <Header title="Explore Nationalities" />
+      <div className="recommended">
+        <select
+          data-testid="explore-by-nationality-dropdown"
+          onClick={ filterByNationality }
+        >
+          <option data-testid="All-option"> All </option>
+          { nationalities.map(({ strArea }, index) => (
+            <option
+              data-testid={ `${strArea}-option` }
+              key={ index }
+            >
+              { strArea }
+            </option>
+          ))}
+        </select>
+        { mealsFiltered.map((i, index) => (
+          <div key={ index }>
+            <CardFood
+              nameReceita={ i.strMeal }
+              imageReceita={ i.strMealThumb }
+              indexReceita={ index }
+              idReceita={ i.idMeal }
+            />
+          </div>
         ))}
-      </select>
-      { mealsFiltered.map((i, index) => (
-        <div key={ index }>
-          <CardFood
-            nameReceita={ i.strMeal }
-            imageReceita={ i.strMealThumb }
-            indexReceita={ index }
-            idReceita={ i.idMeal }
-          />
-        </div>
-      ))}
+      </div>
       <Footer />
     </div>
   );

@@ -17,28 +17,30 @@ function ExploreFoodsIngredients({ history }) {
   return (
     <div>
       <Header title="Explore Ingredients" />
-      { ingredientsFood.slice(0, TWELVE).map(({ strIngredient: ingredient }, index) => {
-        const URL = `https://www.themealdb.com/images/ingredients/${ingredient}-Small.png`;
-        return (
-          <button
-            type="button"
-            onClick={ historyAndFilterFood }
-            data-testid={ `${index}-ingredient-card` }
-            key={ index }
-            name={ ingredient }
-          >
-            <img
-              src={ URL }
-              alt={ `Imagem de:${ingredient}` }
-              data-testid={ `${index}-card-img` }
+      <div className="recommended">
+        { ingredientsFood.slice(0, TWELVE).map(({ strIngredient: ingredient }, index) => {
+          const URL = `https://www.themealdb.com/images/ingredients/${ingredient}-Small.png`;
+          return (
+            <button
+              type="button"
+              onClick={ historyAndFilterFood }
+              data-testid={ `${index}-ingredient-card` }
+              key={ index }
               name={ ingredient }
-            />
-            <h2 data-testid={ `${index}-card-name` } name={ ingredient }>
-              {ingredient}
-            </h2>
-          </button>
-        );
-      })}
+            >
+              <img
+                src={ URL }
+                alt={ `Imagem de:${ingredient}` }
+                data-testid={ `${index}-card-img` }
+                name={ ingredient }
+              />
+              <h2 data-testid={ `${index}-card-name` } name={ ingredient }>
+                {ingredient}
+              </h2>
+            </button>
+          );
+        })}
+      </div>
       <Footer />
     </div>
   );

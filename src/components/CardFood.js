@@ -15,6 +15,7 @@ function CardReceitas({ nameReceita, imageReceita, indexReceita, idReceita }) {
       >
 
         <img
+          className="img-detail"
           data-testid={ `${indexReceita}-card-img` }
           src={ imageReceita }
           alt={ nameReceita }
