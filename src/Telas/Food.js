@@ -26,7 +26,7 @@ function Food({ history }) {
   return (
     <div>
       <Header title="Foods" enableBtn />
-      <div className="container-btns-foods">
+      <div className="container-btns">
         {
           categoryApiFood.map((item, index) => (
 

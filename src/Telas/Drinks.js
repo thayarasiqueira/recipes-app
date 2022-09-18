@@ -29,11 +29,12 @@ function Drinks({ history }) {
   const actualLocationDrinks = useLocation();
   return (
     <div>
-      <div>
-        <Header title="Drinks" enableBtn select />
+      <Header title="Drinks" enableBtn select />
+      <div className="container-btns">
         {
           categoryApiDrink.map((item, index) => (
             <button
+              className="btn"
               data-testid={ `${item.strCategory}-category-filter` }
               type="button"
               key={ index }
@@ -47,6 +48,7 @@ function Drinks({ history }) {
 
         }
         <button
+          className="btn"
           type="button"
           data-testid="All-category-filter"
           name="All"
@@ -55,7 +57,7 @@ function Drinks({ history }) {
           All
         </button>
       </div>
-      <div>
+      <div className="container-foods">
         {
           filteredResults.map((e, i) => (
             <div
