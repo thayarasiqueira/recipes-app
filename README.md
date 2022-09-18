@@ -1,5 +1,9 @@
 # Recipes app
 
+
+https://user-images.githubusercontent.com/98190097/190926633-d51a1e6d-66e6-45ee-bb55-6e9dd2dc31fb.mp4
+
+
 This group project brings a recipe app capable of viewing, searching, filtering, favoriting and tracking the progress of food and drink preparation.
 
 The APIs used are the following:
