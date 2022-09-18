@@ -5,6 +5,7 @@ import shareImage from '../images/shareIcon.svg';
 import ContextDetailsDrinks from '../context/DetailsDrinks/ContextDetailsDrinks';
 import favoritImageHeart from '../images/whiteHeartIcon.svg';
 import favoritImageBlackHeart from '../images/blackHeartIcon.svg';
+import Footer from '../components/Footer';
 
 function InProgressDrinks() {
   const { arrayId, functionPullId,
@@ -120,6 +121,7 @@ function InProgressDrinks() {
           </div>
         ))
       }
+      <Footer />
     </div>
   );
 }

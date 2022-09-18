@@ -1,6 +1,5 @@
 import React, { useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { useLocation } from 'react-router-dom';
 import ContextFood from '../context/ContextFood';
 import CardFood from '../components/CardFood';
 import Header from '../components/Header';
@@ -22,7 +21,6 @@ function Food({ history }) {
     }
   }, [filteredResults]);
 
-  const actualLocation = useLocation();
   return (
     <div>
       <Header title="Foods" enableBtn />
@@ -87,7 +85,7 @@ function Food({ history }) {
 
         }
       </div>
-      { actualLocation.pathname === '/foods' ? <Footer /> : null}
+      <Footer />
     </div>
 
   );

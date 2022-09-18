@@ -1,6 +1,5 @@
 import React, { useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { useLocation } from 'react-router-dom';
 import Footer from '../components/Footer';
 import ContextDrinks from '../context/ContextDrinks';
 import CardDrink from '../components/CardDrink';
@@ -26,7 +25,6 @@ function Drinks({ history }) {
     }
   }, [filteredResults]);
 
-  const actualLocationDrinks = useLocation();
   return (
     <div>
       <Header title="Drinks" enableBtn select />
@@ -91,7 +89,7 @@ function Drinks({ history }) {
         }
 
       </div>
-      {actualLocationDrinks.pathname === '/drinks' ? <Footer /> : null}
+      <Footer />
     </div>
 
   );
