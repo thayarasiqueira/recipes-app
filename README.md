@@ -24,7 +24,7 @@ Contribuitors: kadu3611, hektho, IsaacFranzen
 Prototype:
 https://www.figma.com/file/cBDVGdqQxUuVlQp3ehW7wx/Recipes-App
 
-## Technologies used
+## Technologies
 React, Context API, CSS, JavaScript
 
 ## Installation
