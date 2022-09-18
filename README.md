@@ -1,6 +1,6 @@
 # Recipes app
 
-
+*Developed on July 2022*
 
 https://user-images.githubusercontent.com/98190097/190927222-4719277f-dbb6-4f1d-b4d0-3f31e8819189.mp4
 
