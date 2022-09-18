@@ -15,10 +15,11 @@ function FavoriteRecipes() {
     setArrayFavorite(localFavorit);
   }, []);
   return (
-    <main>
-      <section>
+    <main className="container-foods">
+      <section className="container-btns">
         <Header title="Favorite Recipes" />
         <button
+          className="btn"
           type="button"
           onClick={ () => { filterRecive('All'); } }
           data-testid="filter-by-all-btn"
@@ -27,6 +28,7 @@ function FavoriteRecipes() {
 
         </button>
         <button
+          className="btn"
           type="button"
           onClick={ () => { filterRecive('food'); } }
           data-testid="filter-by-food-btn"
@@ -35,6 +37,7 @@ function FavoriteRecipes() {
 
         </button>
         <button
+          className="btn"
           type="button"
           data-testid="filter-by-drink-btn"
           onClick={ () => { filterRecive('drink'); } }
