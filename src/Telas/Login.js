@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import LoginContext from '../context/LoginContext';
-import '../Login.css';
 import logoIcon from '../images/logoIcon.svg';
 
 function Login() {
@@ -34,6 +33,7 @@ function Login() {
           disabled={ disabled }
           data-testid="login-submit-btn"
           onClick={ saveEmailStorage }
+          className="btn"
         >
           Login
 

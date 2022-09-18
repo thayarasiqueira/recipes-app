@@ -6,7 +6,7 @@ import searchIcon from '../images/searchIcon.svg';
 import HeaderSearch from './HeaderSearch';
 import ContextFood from '../context/ContextFood';
 
-function Header({ title, enableBtn = false }) {
+function Header({ title }) {
   const { handleSearch } = useContext(ContextFood);
   const [enableInput, setEnableInput] = useState(false);
 
@@ -18,37 +18,40 @@ function Header({ title, enableBtn = false }) {
     }
   };
   return (
-    <section>
-      <Link to="/profile">
-        <input
-          data-testid="profile-top-btn"
+    <div>
+      <section className="container-header">
+        <h1 data-testid="page-title">{ title }</h1>
+        <Link to="/profile">
+          <input
+            id="input-profile"
+            data-testid="profile-top-btn"
+            type="image"
+            src={ profileIcon }
+            alt="Ícone que leva ao perfil"
+          />
+        </Link>
+        { !enableInput && <input
+          data-testid="search-top-btn"
           type="image"
-          src={ profileIcon }
-          alt="Ícone que leva ao perfil"
-        />
-      </Link>
-      <h1 data-testid="page-title">{ title }</h1>
-      { enableBtn && <input
-        data-testid="search-top-btn"
-        type="image"
-        src={ searchIcon }
-        alt="Ícone de buscar"
-        onClick={ handleClick }
-      />}
+          src={ searchIcon }
+          alt="Ícone de buscar"
+          onClick={ handleClick }
+          id="search-icon"
+        />}
+      </section>
       { enableInput
     && (
-      <>
-        <input type="text" data-testid="search-input" onChange={ handleSearch } />
+      <div className="container-search">
+        <input type="text" id="search-input" onChange={ handleSearch } />
         <HeaderSearch />
-      </>
+      </div>
     )}
-    </section>
+    </div>
 
   );
 }
 
 Header.propTypes = {
   title: PropTypes.string.isRequired,
-  enableBtn: PropTypes.bool.isRequired,
 };
 export default Header;

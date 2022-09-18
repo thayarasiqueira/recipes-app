@@ -39,6 +39,7 @@ function HeaderSearch() {
         First letter
       </label>
       <button
+        className="btn"
         type="button"
         data-testid="exec-search-btn"
         onClick={ handleFilterSearch }

@@ -25,12 +25,13 @@ function Food({ history }) {
   const actualLocation = useLocation();
   return (
     <div>
-      <div>
-        <Header title="Foods" enableBtn />
+      <Header title="Foods" enableBtn />
+      <div className="container-btns-foods">
         {
           categoryApiFood.map((item, index) => (
 
             <button
+              className="btn"
               data-testid={ `${item.strCategory}-category-filter` }
               type="button"
               key={ index }
@@ -45,6 +46,7 @@ function Food({ history }) {
 
         }
         <button
+          className="btn"
           type="button"
           data-testid="All-category-filter"
           name="All"
@@ -53,7 +55,7 @@ function Food({ history }) {
           All
         </button>
       </div>
-      <div>
+      <div className="container-foods">
         {
           filteredResults.map((e, i) => (
             <div
