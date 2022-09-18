@@ -6,7 +6,7 @@ import searchIcon from '../images/searchIcon.svg';
 import HeaderSearch from './HeaderSearch';
 import ContextFood from '../context/ContextFood';
 
-function Header({ title }) {
+function Header({ title, enableBtn = false }) {
   const { handleSearch } = useContext(ContextFood);
   const [enableInput, setEnableInput] = useState(false);
 
@@ -30,14 +30,14 @@ function Header({ title }) {
             alt="Ícone que leva ao perfil"
           />
         </Link>
-        { !enableInput && <input
+        { !enableInput && enableBtn ? <input
           data-testid="search-top-btn"
           type="image"
           src={ searchIcon }
           alt="Ícone de buscar"
           onClick={ handleClick }
           id="search-icon"
-        />}
+        /> : null }
       </section>
       { enableInput
     && (
@@ -53,5 +53,6 @@ function Header({ title }) {
 
 Header.propTypes = {
   title: PropTypes.string.isRequired,
+  enableBtn: PropTypes.bool.isRequired,
 };
 export default Header;
